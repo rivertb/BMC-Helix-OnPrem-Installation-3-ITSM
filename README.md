@@ -31,6 +31,7 @@ The BMC_Helix_Innovation_Suite_And_Service_Management_Apps_Version_23.3.04.zip f
 * image_pull_push.sh and image_sync_to_private_registry.sh—These files contain the scripts to synchronize your Harbor repository with BMC Helix Innovation Suite and BMC Helix Platform services container images in BMC DTR.
 
 Hot fix for current version, such as the BMC Helix Innovation Suite & Service Management Apps Sizing Hotfix Version 23.3.04
+
 ![Sizing HF](./diagram/sizing-hf.png)
 
 ## 2 Sync Helix ITSM images to local Harbor
@@ -265,7 +266,7 @@ After updating the build.properties file, run the BMC Deployment Engine automati
 ```
 perl setup-Helix-ITSM-onPrem.pl  2>&1 | tee ~/BMC-HELIX-DE-AUTO.log.$$
 ```
-The Jenkins job pipeline framework installed
+The Jenkins job pipeline framework installed.
 ![Jenkins Installed](./diagram/jenkins-installed.png)
 
 Add firewall rule for jenkins
@@ -323,6 +324,7 @@ Jenkins home page->Manage Jenkins->System->Scrolldown to "Global Trusted Pipelin
 * Load implicitly: Checked
 * Project Repository: ssh://git@helix-svc.bmc.local/home/git/git_repo/LIBRARY_REPO/pipeline-framework/pipeline-framework.git
 * Credentials: Git/****** (Credentials of git)
+
 ![Jenkins Pipeline Framework](./diagram/jenkins-pipeline-framework.png)
 
 Click Add button to add another Library, save the change.
@@ -332,6 +334,7 @@ Click Add button to add another Library, save the change.
 * Load implicitly: Checked
 * Project Repository: ssh://git@helix-svc.bmc.local/home/git/git_repo/LIBRARY_REPO/jenkins-workaround/JENKINS-27413-workaround-library.git
 * Credentials: Git/****** (Credentials of git)
+
 ![Jenkins 27413 Workaround Library](./diagram/jenkins-27413-workaround-library.png)
 
 ## 5 Dry run Pipeline
@@ -346,25 +349,25 @@ Below two pipelines do NOT require a dry-run
 * agent-add-pipeline
 * HELIX_DR
 
-Select HELIX_CONPREM_DEPLOYMENT
+Select HELIX_CONPREM_DEPLOYMENT.
 ![Select HELIX_CONFIG_DEPLOYMENT](./diagram/helix-onprem-deployment-select.png)
 
-Click Build with Parameters
+Click Build with Parameters.
 ![HELIX_CONFIG_DEPLOYMENT Build With Parameters](./diagram/helix-onprem-deployment-build-with-parameters.png)
 
-Input agent
+Input agent.
 ![HELIX_CONFIG_DEPLOYMENT Agent Setting](./diagram/helix-onprem-deployment-agent-setting.png)
 
-Check out all under PRODUCT_DEPLOY section
+Check out all under PRODUCT_DEPLOY section.
 ![HELIX_CONFIG_DEPLOYMENT Product Deploy](./diagram/helix-onprem-deployment-product-deploy.png)
 
-Build job failed as expected
+Build job failed as expected.
 ![HELIX_CONFIG_DEPLOYMENT Buildes With Failure](./diagram/helix-onprem-deployment-builds-with-failure.png)
 
-Go to Dashboard->Manage Jenkins->In-process Script Approval
+Go to Dashboard->Manage Jenkins->In-process Script Approval.
 ![In Process Script Approval](./diagram/in-process-script-approval.png)
 
-Click Approve button
+Click Approve button.
 ![In Process Script Approved](./diagram/in-process-script-approved.png)
 
 ## 6 Create a self-signed or custom CA certificate
@@ -408,7 +411,7 @@ Trust this certificate? [no]:  yes
 Certificate was added to keystore
 [Storing /root/openssl/cacerts]
 ```
-We got the new cacerts with public key. It will be upload to Jenkins pipeline.
+We get the new cacerts with public key stored. It will be upload to Jenkins pipeline.
 
 ## 7 Setup Installation environment
 ### 7.1 Verifying DNS for applications
@@ -452,10 +455,11 @@ Log in to BMC Helix Single Sign-On
 ![RSSO Login](./diagram/rsso-login.png)
 
 Click Tenant menu, select the SAAS_TENANT, click "Select Tenant" under Action column, the "Tenant SAAS_TENANT is selected" confirmation message is displayed on the screen.
-Copy another tenant name of adelab.<TENANT-ID> for later use
+Copy another tenant name of adelab.\<TENANT-ID\> for later use.
+
 ![RSSO Tenant SAAS Tentant](./diagram/rsso-tenant-sass-tentant.png)
 
-On the main menu, click Realm
+On the main menu, click Realm.
 ![RSSO Add Realm](./diagram/rsso-add-realm.png)
 
 In the General tab, enter the following details:
@@ -465,6 +469,7 @@ In the General tab, enter the following details:
 | Realm ID | itsm-poc | <CUSTOMER_SERVICE>-<ENVIRONMENT> |
 | Application Domain(s) | itsm-poc-atws.bmc.local, itsm-poc-dwpcatalog.bmc.local, itsm-poc.bmc.local, itsm-poc-restapi.bmc.local, itsm-poc-is.bmc.local, itsm-poc-sr.bmc.local, itsm-poc-dwp.bmc.local, itsm-poc-smartit.bmc.local, itsm-poc-chat.bmc.local, itsm-poc-vchat.bmc.local, itsm-poc-int.bmc.local |  |
 | Tenant | adelab.<TENANT-ID> | paste the tenant name |
+
 ![RSSO Realm General](./diagram/rsso-realm-general.png)
 
 Click Authentication on the left tab, and enter the following details:
@@ -500,8 +505,10 @@ On Jenkins Dashboard, click the schdule button at the line of HELIX_ONPREM_DEPLO
 ![RSSO Authentication](./diagram/rsso-authentication.png)
 
 Click "Build with Parameters" on the left, fill in all the necessary parameters and click the Build button.
+
 ![HELIX_ONPREM_DEPLOYMENT Schdule](./diagram/helix-onprem-deployment-schdule-build-with-parameters.png)
 
+Parameter Description
 
 | Section | Parameter | Value | Desc |
 | --- | --- | --- | --- |
@@ -598,13 +605,13 @@ The pipeline usually does not succeed in one go. If an error occurs, we need to 
 Hover the mouse over the stage where the error is reported and click the Logs window that pops up.
 ![HELIX_ONPREM_DEPLOYMENT Failure1](./diagram/helix-onprem-deployment-failure1.png)
 
-Click the last stage
+Click the last stage.
 ![HELIX_ONPREM_DEPLOYMENT Failure2](./diagram/helix-onprem-deployment-failure2.png)
 
-Click Console Output to see the output
+Click Console Output to see the output.
 ![HELIX_ONPREM_DEPLOYMENT Failure3](./diagram/helix-onprem-deployment-failure3.png)
 
-Scroll down to see the FAILURE
+Scroll down to see the FAILURE.
 ![HELIX_ONPREM_DEPLOYMENT Failure4](./diagram/helix-onprem-deployment-failure4.png)
 
 Below exception is pending approval issue
@@ -612,13 +619,13 @@ Below exception is pending approval issue
 Exception occured : org.jenkinsci.plugins.scriptsecurity.sandbox.RejectedAccessException: Scripts not permitted to use method org.jenkinsci.plugins.workflow.support.steps.build.RunWrapper getRawBuild
 ```
 
-Click Manage Jenkins tab on Jenkins Dashboard, In-process Script Approval
+Click Manage Jenkins tab on Jenkins Dashboard, In-process Script Approval.
 ![HELIX_ONPREM_DEPLOYMENT Failure5](./diagram/helix-onprem-deployment-failure5.png)
 
-Clicke Approve button
+Clicke Approve button.
 ![HELIX_ONPREM_DEPLOYMENT Failure6](./diagram/helix-onprem-deployment-failure6.png)
 
-Go back to Jenkins Dashboard, select HELIX_ONPREM_DEPLOYMENT pipeline, select the last build
+Go back to Jenkins Dashboard, select HELIX_ONPREM_DEPLOYMENT pipeline, select the last build.
 ![HELIX_ONPREM_DEPLOYMENT Failure7](./diagram/helix-onprem-deployment-failure7.png)
 
 Clicke Rebuild on the left, scroll down to Rebuild. 
