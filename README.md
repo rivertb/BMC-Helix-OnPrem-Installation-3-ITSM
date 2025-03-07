@@ -468,7 +468,7 @@ In the General tab, enter the following details:
 | --- | --- | --- |
 | Realm ID | itsm-poc | <CUSTOMER_SERVICE>-<ENVIRONMENT> |
 | Application Domain(s) | itsm-poc-atws.bmc.local, itsm-poc-dwpcatalog.bmc.local, itsm-poc.bmc.local, itsm-poc-restapi.bmc.local, itsm-poc-is.bmc.local, itsm-poc-sr.bmc.local, itsm-poc-dwp.bmc.local, itsm-poc-smartit.bmc.local, itsm-poc-chat.bmc.local, itsm-poc-vchat.bmc.local, itsm-poc-int.bmc.local |  |
-| Tenant | adelab.<TENANT-ID> | paste the tenant name |
+| Tenant | adelab.\<TENANT-ID\> | paste the tenant name |
 
 ![RSSO Realm General](./diagram/rsso-realm-general.png)
 
@@ -591,7 +591,7 @@ Parameter Description
 | RSSO_PARAMETERS | RSSO_URL | https://lb.bmc.local/rsso | |
 | RSSO_PARAMETERS | RSSO_ADMIN_USER | Admin | |
 | RSSO_PARAMETERS | RSSO_ADMIN_PASSWORD | RSSO#Admin# | |
-| RSSO_PARAMETERS | TENANT_DOMAIN | adelab.1459264291 | adelab.<TENANT-ID> |
+| RSSO_PARAMETERS | TENANT_DOMAIN | adelab.1459264291 | adelab.\<TENANT-ID\> |
 | ITSM INTEROPS PARAMETERS | HELIX_PLATFORM_DOMAIN | bmc.local | |
 | ITSM INTEROPS PARAMETERS | HELIX_PLATFORM_NAMESPACE | helixade | |
 | ITSM INTEROPS PARAMETERS | HELIX_PLATFORM_CUSTOMER_NAME | adelab | |
