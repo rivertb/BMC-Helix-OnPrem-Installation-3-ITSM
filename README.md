@@ -466,7 +466,7 @@ In the General tab, enter the following details:
 
 | Filed | Value | Desc |
 | --- | --- | --- |
-| Realm ID | itsm-poc | <CUSTOMER_SERVICE>-<ENVIRONMENT> |
+| Realm ID | itsm-poc | <CUSTOMER_SERVICE>-\<ENVIRONMENT\> |
 | Application Domain(s) | itsm-poc-atws.bmc.local, itsm-poc-dwpcatalog.bmc.local, itsm-poc.bmc.local, itsm-poc-restapi.bmc.local, itsm-poc-is.bmc.local, itsm-poc-sr.bmc.local, itsm-poc-dwp.bmc.local, itsm-poc-smartit.bmc.local, itsm-poc-chat.bmc.local, itsm-poc-vchat.bmc.local, itsm-poc-int.bmc.local |  |
 | Tenant | adelab.\<TENANT-ID\> | paste the tenant name |
 
@@ -637,7 +637,7 @@ During the installation project, you may encounter image pulling errors as shown
 
 ![Helix Portal](./diagram/tctlgentenant-image-pull-error.png)
 
-Use the following command to query the missing image file name and add it to the local image library.
+Use the following command to query the missing image file name and add it to the local image registry.
 ```
 kubectl -n helixade describe pod <POD-NAME>
 ```
