@@ -642,7 +642,7 @@ Use the following command to query the missing image file name and add it to the
 kubectl -n helixade describe pod <POD-NAME>
 ```
 
-![Helix Portal](./diagram/tctlgentenant-image-pull-error.png)
+![Helix Portal](./diagram/tctlgentenant-image.png)
 
 
 After the installation is complete, you will find that the hannah_admin account can no longer log in to the helix portal. That is because in Section 9, we have reset the password to hannah_admin using the parameter BAKEDUSER_HANNAH_ADMIN_PASSWORD.
