@@ -631,7 +631,19 @@ Go back to Jenkins Dashboard, select HELIX_ONPREM_DEPLOYMENT pipeline, select th
 Clicke Rebuild on the left, scroll down to Rebuild. 
 ![HELIX_ONPREM_DEPLOYMENT Failure8](./diagram/helix-onprem-deployment-failure8.png)
 
-Repeat th process again and again until all issues are resolved and the HELIX_ONPREM_DEPLOYMENT pipeline is successfully executed.
+Repeat the process again and again until all issues are resolved and the HELIX_ONPREM_DEPLOYMENT pipeline is successfully executed.
+
+During the installation project, you may encounter image pulling errors as shown in the figure below. 
+
+![Helix Portal](./diagram/tctlgentenant-image-pull-error.png)
+
+Use the following command to query the missing image file name and add it to the local image library.
+```
+kubectl -n helixade describe pod <POD-NAME>
+```
+
+![Helix Portal](./diagram/tctlgentenant-image-pull-error.png)
+
 
 After the installation is complete, you will find that the hannah_admin account can no longer log in to the helix portal. That is because in Section 9, we have reset the password to hannah_admin using the parameter BAKEDUSER_HANNAH_ADMIN_PASSWORD.
 
