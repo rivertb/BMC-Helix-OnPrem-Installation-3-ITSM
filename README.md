@@ -632,3 +632,8 @@ Clicke Rebuild on the left, scroll down to Rebuild.
 ![HELIX_ONPREM_DEPLOYMENT Failure8](./diagram/helix-onprem-deployment-failure8.png)
 
 Repeat th process again and again until all issues are resolved and the HELIX_ONPREM_DEPLOYMENT pipeline is successfully executed.
+
+After the installation is complete, you will find that the hannah_admin account can no longer log in to the helix portal. That is because in Section 9, we have reset the password to hannah_admin using the parameter BAKEDUSER_HANNAH_ADMIN_PASSWORD.
+
+![Helix Portal](./diagram/helix-portal.png)
+
