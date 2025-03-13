@@ -21,58 +21,53 @@ You obtain the BMC Helix Service Management installation files by downloading th
 * Git repositories and artifacts that are used for BMC Helix Service Management installation
 * Deployment manager that is used for BMC Helix Platform Common Services installation (Already download in [ITOM](https://github.com/rivertb/BMC-Helix-OnPrem-Installation-2-ITOM) project)
 
-In the BMC Helix Innovation Suite OnPrem page, on the Product tab, select BMC Helix Innovation Suite & Service Management Apps latest version, such as  BMC Helix Innovation Suite & Service Management Apps latest version, such as 23.3.04 , and click Download.
+In the BMC Helix Innovation Suite OnPrem page, on the Product tab, select BMC Helix Innovation Suite & Service Management Apps latest version, such as  BMC Helix Innovation Suite & Service Management Apps latest version, such as 25.1.01 , and click Download.
 ![Innovation Suite](./diagram/innovation-suite.png)
 
-The BMC_Helix_Innovation_Suite_And_Service_Management_Apps_Version_23.3.04.zip file contains the following files:
+The BMC_Helix_Innovation_Suite_And_Service_Management_Apps_Version_25.1.01.zip file contains the following files:
 
-* BMC_Remedy_Deployment_Manager_Configuration_Release_23.3.04.zip—This file contains the installation artifacts.
-* BMC_Remedy_Deployment_Engine_Setup_23.3.04.zip—This file contains BMC Deployment Engine set up files.
+* BMC_Remedy_Deployment_Engine_Setup_25.1.01.zip—This file contains BMC Deployment Engine set up files.
+* BMC_Remedy_Deployment_Manager_Configuration_Release_25.1.01.zip—This file contains the installation artifacts.
 * image_pull_push.sh and image_sync_to_private_registry.sh—These files contain the scripts to synchronize your Harbor repository with BMC Helix Innovation Suite and BMC Helix Platform services container images in BMC DTR.
-
-Hot fix for current version, such as the BMC Helix Innovation Suite & Service Management Apps Sizing Hotfix Version 23.3.04
-
-![Sizing HF](./diagram/sizing-hf.png)
 
 ## 2 Sync Helix ITSM images to local Harbor
 
 The latest list of images required for BMC Helix Service Management installation can be download from [here](https://docs.bmc.com/xwiki/bin/view/Service-Management/On-Premises-Deployment/BMC-Helix-Service-Management-Deployment/brid23304/Installing/Preparing-for-installation/Setting-up-a-Harbor-repository-to-synchronize-container-images/), including:
 
-* 23304_ITSM_Platform_Images.txt
-* 23304_ITSM_SmartApps_Images.txt
-* 23304_ITSM_Pipeline_Images.txt
-* 23304_SupportAssistTool_Images.txt
+* 25101_ITSM_Platform_Images.txt
+* 25101_ITSM_SmartApps_Images.txt
+* 25101_ITSM_Pipeline_Images.txt
+* 25101_SupportAssistTool_Images.txt
+* 251_Helix_Platform_Images.txt
 * 244_Helix_Platform_Images.txt
 * 210503HF12_SmartReporting_Images.txt
 
-You can also copy from ~/BMC-Helix-OnPrem-Installation-1-Env/helix-itsm-images-files-23.3.04.
+
+You can also copy from ~/BMC-Helix-OnPrem-Installation-1-Env/helix-itsm-images-files-25.1.01.
 ```
-cp -R ~/BMC-Helix-OnPrem-Installation-1-Env/helix-itsm-images-files-23.3.04 /root/.
-cd /root/helix-itsm-images-files-23.3.04
+cp -R ~/BMC-Helix-OnPrem-Installation-1-Env/helix-itsm-images-files-25.1.01 /root/.
+cd /root/helix-itsm-images-files-25.1.01
 chmod a+x *.sh
 dnf install dos2unix -y
 dos2unix *.txt
 ls -l
 
--rw-r--r-- 1 root root  255 Mar  4 15:58 210503HF12_SmartReporting_Images.txt
--rw-r--r-- 1 root root 2551 Mar  4 15:58 23301HF2_ITSM_Platform_Images.txt
--rw-r--r-- 1 root root 2002 Mar  4 15:58 23304_ITSM_Pipeline_Images.txt
--rw-r--r-- 1 root root 3014 Mar  4 15:58 23304_ITSM_Platform_Images.txt
--rw-r--r-- 1 root root 1556 Mar  4 15:58 23304_ITSM_SmartApps_Images.txt
--rw-r--r-- 1 root root  127 Mar  4 15:58 23304_SupportAssistTool_Images.txt
--rw-r--r-- 1 root root 4703 Mar  4 15:58 244_Helix_Platform_Images.txt
--rwxr-xr-x 1 root root 1026 Mar  4 15:58 image_pull_push.sh
--rw-r--r-- 1 root root 2551 Mar  4 15:58 images.txt
--rwxr-xr-x 1 root root 2611 Mar  4 15:58 image_sync_to_private_registry.sh
+-rwxr-xr-x 1 root root 2611 Mar 13 07:49 image_sync_to_private_registry.sh
+-rwxr-xr-x 1 root root 1026 Mar 13 07:49 image_pull_push.sh
+-rw-r--r-- 1 root root  255 Mar 13 09:18 210503HF12_SmartReporting_Images.txt
+-rw-r--r-- 1 root root 3088 Mar 13 09:18 25101_ITSM_Platform_Images.txt
+-rw-r--r-- 1 root root 2062 Mar 13 09:18 25101_ITSM_Pipeline_Images.txt
+-rw-r--r-- 1 root root 1562 Mar 13 09:18 25101_ITSM_SmartApps_Images.txt
+-rw-r--r-- 1 root root  127 Mar 13 09:18 25101_SupportAssistTool_Images.txt
+-rw-r--r-- 1 root root 4827 Mar 13 09:18 251_Helix_Platform_Images.txt
 ```
 Synchronize the Helix ITSM images from https://containers.bmc.com to local Harbor server.
 ```
 cat 210503HF12_SmartReporting_Images.txt > images.txt
-cat 23301HF2_ITSM_Platform_Images.txt >> images.txt
-cat 23304_ITSM_Pipeline_Images.txt >> images.txt
-cat 23304_ITSM_Platform_Images.txt >> images.txt
-cat 23304_ITSM_SmartApps_Images.txt >> images.txt
-cat 23304_SupportAssistTool_Images.txt >> images.txt
+cat 25101_ITSM_Platform_Images.txt >> images.txt
+cat 25101_ITSM_Pipeline_Images.txt >> images.txt
+cat 25101_ITSM_SmartApps_Images.txt >> images.txt
+cat 25101_SupportAssistTool_Images.txt >> images.txt
 
 nohup ./image_sync_to_private_registry.sh > nohup.out &
 tail -f nohup.out
@@ -233,13 +228,13 @@ kubectl get nodes
 ### 4.6 Run the BMC Deployment Engine automation script
 
 
-Copy the BMC_Helix_Innovation_Suite_And_Service_Management_Apps_Version_23.3.04.zip file downloaded from EPD and extract the files to the git user home directory
+Copy the BMC_Helix_Innovation_Suite_And_Service_Management_Apps_Version_25.1.01.zip file downloaded from EPD and extract the files to the git user home directory
 
 ```
 #Switch to the git user
 su - git
-unzip ./BMC_Helix_Innovation_Suite_And_Service_Management_Apps_Version_23.3.04.zip
-unzip ./BMC_Remedy_Deployment_Engine_Setup_23.3.04.zip
+unzip ./BMC_Helix_Innovation_Suite_And_Service_Management_Apps_Version_25.1.01.zip
+unzip ./BMC_Remedy_Deployment_Engine_Setup_25.1.01.zip
 cd DE1.0
 ```
 Update build.properties and customize the following parameters:
@@ -252,7 +247,7 @@ Update build.properties and customize the following parameters:
 * POSTGRES_VERSION
 * HELM_VERSION
 ```
-sed -i "/^ITSM_REPO_GIT_ZIP/c \ITSM_REPO_GIT_ZIP=/home/git/BMC_Remedy_Deployment_Manager_Configuration_Release_23.3.04.zip" /home/git/DE1.0/build.properties
+sed -i "/^ITSM_REPO_GIT_ZIP/c \ITSM_REPO_GIT_ZIP=/home/git/BMC_Remedy_Deployment_Manager_Configuration_Release_25.1.01.zip" /home/git/DE1.0/build.properties
 sed -i "/^JENKINS_CONFIG_FILES_ZIP_PATH/c \JENKINS_CONFIG_FILES_ZIP_PATH=/home/git/Jenkins_Config_Files.zip" /home/git/DE1.0/build.properties
 sed -i "/^LIBRARY_REPO_ZIP_PATH/c \LIBRARY_REPO_ZIP_PATH=/home/git/LIBRARY_REPO.zip" /home/git/DE1.0/build.properties
 sed -i "/^DB_TYPE/c \DB_TYPE=postgres" /home/git/DE1.0/build.properties
@@ -313,6 +308,8 @@ Input password for the below credentials:
 
 Check Node Status. 
 Goto http://192.168.1.1:8080/computer, Refresh Status, the nodes will start automatically. Or click Configure, select git user as Credentials and Launch Agent.
+![Jenkins Computer Nodes](./diagram/jenkins-launch-agent.png)
+
 ![Jenkins Computer Nodes](./diagram/jenkins-computer-nodes.png)
 
 Add Jenkins libraries.
@@ -416,18 +413,18 @@ We get the new cacerts with public key stored. It will be upload to Jenkins pipe
 ## 7 Setup Installation environment
 ### 7.1 Verifying DNS for applications
 We have configured DNS for the BMC Helix Service Management applications so that we can access the applications by using the following URL format. 
-* Mid Tier: <CUSTOMER_SERVICE>-\<ENVIRONMENT\>.<CLUSTER_DOMAIN>
-* Mid Tier integration: <CUSTOMER_SERVICE>-\<ENVIRONMENT\>-int.<CLUSTER_DOMAIN>
-* Smart IT: <CUSTOMER_SERVICE>-\<ENVIRONMENT\>-smartit.<CLUSTER_DOMAIN>
-* Smart Reporting: <CUSTOMER_SERVICE>-\<ENVIRONMENT\>-sr.<CLUSTER_DOMAIN>
-* Innovation Studio: <CUSTOMER_SERVICE>-\<ENVIRONMENT\>-is.<CLUSTER_DOMAIN>
-* Innovation Suite REST API or CMDB: <CUSTOMER_SERVICE>-\<ENVIRONMENT\>-restapi.<CLUSTER_DOMAIN>
-* Atrium Web Services: <CUSTOMER_SERVICE>-\<ENVIRONMENT\>-atws.<CLUSTER_DOMAIN>
-* Digital Workplace: <CUSTOMER_SERVICE>-\<ENVIRONMENT\>-dwp.<CLUSTER_DOMAIN>
-* Digital Workplace Catalog: <CUSTOMER_SERVICE>-\<ENVIRONMENT\>-dwpcatalog.<CLUSTER_DOMAIN>
-* Live Chat: <CUSTOMER_SERVICE>-\<ENVIRONMENT\>-vchat.<CLUSTER_DOMAIN>
-* Openfire Chat: <CUSTOMER_SERVICE>-\<ENVIRONMENT\>-chat.<CLUSTER_DOMAIN>
-* Support Assistant tool: <CUSTOMER_SERVICE>-\<ENVIRONMENT\>-supportassisttool.<CLUSTER_DOMAIN>
+* Mid Tier: \<CUSTOMER_SERVICE\>-\<ENVIRONMENT\>.<CLUSTER_DOMAIN>
+* Mid Tier integration: \<CUSTOMER_SERVICE\>-\<ENVIRONMENT\>-int.<CLUSTER_DOMAIN>
+* Smart IT: \<CUSTOMER_SERVICE\>-\<ENVIRONMENT\>-smartit.<CLUSTER_DOMAIN>
+* Smart Reporting: \<CUSTOMER_SERVICE\>-\<ENVIRONMENT\>-sr.<CLUSTER_DOMAIN>
+* Innovation Studio: \<CUSTOMER_SERVICE\>-\<ENVIRONMENT\>-is.<CLUSTER_DOMAIN>
+* Innovation Suite REST API or CMDB: \<CUSTOMER_SERVICE\>-\<ENVIRONMENT\>-restapi.<CLUSTER_DOMAIN>
+* Atrium Web Services: \<CUSTOMER_SERVICE\>-\<ENVIRONMENT\>-atws.<CLUSTER_DOMAIN>
+* Digital Workplace: \<CUSTOMER_SERVICE\>-\<ENVIRONMENT\>-dwp.<CLUSTER_DOMAIN>
+* Digital Workplace Catalog: \<CUSTOMER_SERVICE\>-\<ENVIRONMENT\>-dwpcatalog.<CLUSTER_DOMAIN>
+* Live Chat: \<CUSTOMER_SERVICE\>-\<ENVIRONMENT\>-vchat.<CLUSTER_DOMAIN>
+* Openfire Chat: \<CUSTOMER_SERVICE\>-\<ENVIRONMENT\>-chat.<CLUSTER_DOMAIN>
+* Support Assistant tool: \<CUSTOMER_SERVICE\>-\<ENVIRONMENT\>-supportassisttool.<CLUSTER_DOMAIN>
 
 ```
 ping -c 4 itsm-poc.bmc.local
@@ -466,7 +463,7 @@ In the General tab, enter the following details:
 
 | Filed | Value | Desc |
 | --- | --- | --- |
-| Realm ID | itsm-poc | <CUSTOMER_SERVICE>-\<ENVIRONMENT\> |
+| Realm ID | itsm-poc | \<CUSTOMER_SERVICE\>-\<ENVIRONMENT\> |
 | Application Domain(s) | itsm-poc-atws.bmc.local, itsm-poc-dwpcatalog.bmc.local, itsm-poc.bmc.local, itsm-poc-restapi.bmc.local, itsm-poc-is.bmc.local, itsm-poc-sr.bmc.local, itsm-poc-dwp.bmc.local, itsm-poc-smartit.bmc.local, itsm-poc-chat.bmc.local, itsm-poc-vchat.bmc.local, itsm-poc-int.bmc.local |  |
 | Tenant | adelab.\<TENANT-ID\> | paste the tenant name |
 
@@ -501,12 +498,12 @@ Execute Deployment Manager script
 ```
 
 ## 9 Config HELIX_ONPREM_DEPLOYMENT pipeline
-On Jenkins Dashboard, click the schdule button at the line of HELIX_ONPREM_DEPLOYMENT pipeline.
-![RSSO Authentication](./diagram/rsso-authentication.png)
+On Jenkins Dashboard, click the HELIX_ONPREM_DEPLOYMENT pipeline.
+![RSSO Authentication](./diagram/helix-onprem-deployment-select.png)
 
 Click "Build with Parameters" on the left, fill in all the necessary parameters and click the Build button.
 
-![HELIX_ONPREM_DEPLOYMENT Schdule](./diagram/helix-onprem-deployment-schdule-build-with-parameters.png)
+![HELIX_ONPREM_DEPLOYMENT Schdule](./diagram/helix-onprem-deployment-build-with-parameters2.png)
 
 Parameter Description
 
@@ -583,7 +580,7 @@ Parameter Description
 | DATABASE_REGISTRY_STORAGE_PASSWORDS_SECRETS_DETAILS | VC_PROXY_USER_PASSWORD | AR#Admin# | |
 | DATABASE_REGISTRY_STORAGE_PASSWORDS_SECRETS_DETAILS | DWP_CONFIG_PRIMARY_ORG_NAME | dwporg | Organization name for BMC Helix Digital Workplace |
 | DATABASE_REGISTRY_STORAGE_PASSWORDS_SECRETS_DETAILS | AR_SERVER_ALIAS | onbmc-s | Alias name of AR System server |
-| DATABASE_REGISTRY_STORAGE_PASSWORDS_SECRETS_DETAILS | PLATFORM_ADMIN_PLATFORM_EXTERNAL_IPS | [192.168.1.201,192.168.1.202,192.168.1.203,192.168.1.204] | External IP address to enable external access.The external IP must be in JSON list format within square brackets. |
+| DATABASE_REGISTRY_STORAGE_PASSWORDS_SECRETS_DETAILS | PLATFORM_ADMIN_PLATFORM_EXTERNAL_IPS | [192.168.1.201] | External IP address to enable external access.The external IP must be in JSON list format within square brackets. |
 | DATABASE_REGISTRY_STORAGE_PASSWORDS_SECRETS_DETAILS | MIDTIERCACHEBUILDER_TRIGGER_PRELOAD | check | Enable full data cache mode |
 | DATABASE_REGISTRY_STORAGE_PASSWORDS_SECRETS_DETAILS | BWF_DEPLOY_SAMPLE_CONTENT_PACK | check | |
 | DATABASE_REGISTRY_STORAGE_PASSWORDS_SECRETS_DETAILS | DWP_DEPLOY_SAMPLE_CONTENT_PACK | check | |
