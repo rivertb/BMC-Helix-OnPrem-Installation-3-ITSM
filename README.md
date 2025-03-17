@@ -688,3 +688,28 @@ After the installation is complete, you will find that the hannah_admin account 
 
 ![Helix Portal](./diagram/helix-portal.png)
 
+
+* Mid Tier
+```
+https://itsm-poc.bmc.local/arsys
+```
+hannah_admin/hannah_admin
+
+* CMDB
+```
+https://itsm-poc-restapi.bmc.local/cmdb/index.html
+```
+hannah_admin/hannah_admin
+
+* BMC Live Chat
+```
+https://itsm-poc-vchat.bmc.local
+```
+admin 
+
+* Openfire
+```
+https://itsm-poc-chat.bmc.local
+```
+admin 
+
