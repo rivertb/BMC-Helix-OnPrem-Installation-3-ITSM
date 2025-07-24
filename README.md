@@ -603,12 +603,7 @@ Parameter Description
 | HARBOR_REGISTRY_HOST | helix-harbor.bmc.local | |
 | DIMAGE_REGISTRY_USERNAME | admin | |
 | IMAGE_REGISTRY_PASSWORD | bmcAdm1n | Change Password |
-| IMAGESECRET_NAME | isharbor-secret | Specify the name used to create Kubernetes image registry secret. kubectl create secret docker-registry harbor-cred \
-  --docker-server=helix-harbor.bmc.local \
-  --docker-username=admin \
-  --docker-password=bmcAdm1n \
-  --docker-email=helix@bmc.local \
-  -n helix |
+| IMAGESECRET_NAME | isharbor-secret | Specify the name used to create Kubernetes image registry secret. **kubectl create secret docker-registry isharbor-secret --docker-server=helix-harbor.bmc.local --docker-username=admin --docker-password=bmcAdm1n -n helixis ** |
 
 **DATABASE DETAILS** section:
 | Parameter | Value | Desc |
