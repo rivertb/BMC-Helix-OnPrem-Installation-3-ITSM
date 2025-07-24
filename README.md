@@ -21,50 +21,53 @@ You obtain the BMC Helix Service Management installation files by downloading th
 * Git repositories and artifacts that are used for BMC Helix Service Management installation
 * Deployment manager that is used for BMC Helix Platform Common Services installation (Already download in [ITOM](https://github.com/rivertb/BMC-Helix-OnPrem-Installation-2-ITOM) project)
 
-In the BMC Helix Innovation Suite OnPrem page, on the Product tab, select BMC Helix Innovation Suite & Service Management Apps latest version, such as  BMC Helix Innovation Suite & Service Management Apps latest version, such as 25.2.01 , and click Download.
+In the BMC Helix Innovation Suite OnPrem page, on the Product tab, select BMC Helix Innovation Suite & Service Management Apps latest version, such as  BMC Helix Innovation Suite & Service Management Apps latest version, such as 25.1.01 , and click Download.
 ![Innovation Suite](./diagram/innovation-suite.png)
 
-The BMC_Helix_Innovation_Suite_And_Service_Management_Apps_Version_25.2.01.zip file contains the following files:
+The BMC_Helix_Innovation_Suite_And_Service_Management_Apps_Version_25.1.01.zip file contains the following files:
 
-* BMC_Remedy_Deployment_Engine_Setup_25.2.01.zip—This file contains BMC Deployment Engine set up files.
-* BMC_Remedy_Deployment_Manager_Configuration_Release_25.2.01.zip—This file contains the installation artifacts.
+* BMC_Remedy_Deployment_Engine_Setup_25.1.01.zip—This file contains BMC Deployment Engine set up files.
+* BMC_Remedy_Deployment_Manager_Configuration_Release_25.1.01.zip—This file contains the installation artifacts.
 * image_pull_push.sh and image_sync_to_private_registry.sh—These files contain the scripts to synchronize your Harbor repository with BMC Helix Innovation Suite and BMC Helix Platform services container images in BMC DTR.
 
 ## 2 Sync Helix ITSM images to local Harbor
 
-The latest list of images required for BMC Helix Service Management installation can be download from [here](https://docs.bmc.com/xwiki/bin/view/Service-Management/On-Premises-Deployment/BMC-Helix-Service-Management-Deployment/brid25201/Installing/Preparing-for-installation/Setting-up-a-Harbor-repository-to-synchronize-container-images/), including:
- * 25201_ITSM_Platform_Images.txt
- * 25201_ITSM_SmartApps_Images.txt
- * 25201_ITSM_Pipeline_Images.txt
- * 25201_SupportAssistTool_Images.txt
- * 252_Helix_Platform_Images.txt
- * 210503HF12_SmartReporting_Images.txt
+The latest list of images required for BMC Helix Service Management installation can be download from [here](https://docs.bmc.com/xwiki/bin/view/Service-Management/On-Premises-Deployment/BMC-Helix-Service-Management-Deployment/brid23304/Installing/Preparing-for-installation/Setting-up-a-Harbor-repository-to-synchronize-container-images/), including:
 
-You can also copy from ~/BMC-Helix-OnPrem-Installation-1-Env/helix-itsm-images-files-25.2.01.
+* 25101_ITSM_Platform_Images.txt
+* 25101_ITSM_SmartApps_Images.txt
+* 25101_ITSM_Pipeline_Images.txt
+* 25101_SupportAssistTool_Images.txt
+* 251_Helix_Platform_Images.txt
+* 244_Helix_Platform_Images.txt
+* 210503HF12_SmartReporting_Images.txt
+
+
+You can also copy from ~/BMC-Helix-OnPrem-Installation-1-Env/helix-itsm-images-files-25.1.01.
 ```
-cp -R ~/BMC-Helix-OnPrem-Installation-1-Env/helix-itsm-images-files-25.2.01 /root/.
-cd /root/helix-itsm-images-files-25.2.01
+cp -R ~/BMC-Helix-OnPrem-Installation-1-Env/helix-itsm-images-files-25.1.01 /root/.
+cd /root/helix-itsm-images-files-25.1.01
 chmod a+x *.sh
 dnf install dos2unix -y
 dos2unix *.txt
 ls -l
 
--rw-r--r-- 1 root root  258 Jul 24 13:43 210503HF12_SmartReporting_Images.txt
--rw-r--r-- 1 root root 2236 Jul 24 13:43 25201_ITSM_Pipeline_Images.txt
--rw-r--r-- 1 root root 3250 Jul 24 13:43 25201_ITSM_Platform_Images.txt
--rw-r--r-- 1 root root 1587 Jul 24 13:43 25201_ITSM_SmartApps_Images.txt
--rw-r--r-- 1 root root  113 Jul 24 13:43 25201_SupportAssistTool_Images.txt
--rw-r--r-- 1 root root 5188 Jul 24 13:43 252_Helix_Platform_Images.txt
--rw-r--r-- 1 root root 1026 Jul 24 13:43 image_pull_push.sh
--rw-r--r-- 1 root root 2570 Jul 24 13:43 image_sync_to_private_registry.sh
+-rwxr-xr-x 1 root root 2611 Mar 13 07:49 image_sync_to_private_registry.sh
+-rwxr-xr-x 1 root root 1026 Mar 13 07:49 image_pull_push.sh
+-rw-r--r-- 1 root root  255 Mar 13 09:18 210503HF12_SmartReporting_Images.txt
+-rw-r--r-- 1 root root 3088 Mar 13 09:18 25101_ITSM_Platform_Images.txt
+-rw-r--r-- 1 root root 2062 Mar 13 09:18 25101_ITSM_Pipeline_Images.txt
+-rw-r--r-- 1 root root 1562 Mar 13 09:18 25101_ITSM_SmartApps_Images.txt
+-rw-r--r-- 1 root root  127 Mar 13 09:18 25101_SupportAssistTool_Images.txt
+-rw-r--r-- 1 root root 4827 Mar 13 09:18 251_Helix_Platform_Images.txt
 ```
 Synchronize the Helix ITSM images from https://containers.bmc.com to local Harbor server.
 ```
 cat 210503HF12_SmartReporting_Images.txt > images.txt
-cat 25201_ITSM_Pipeline_Images.txt >> images.txt
-cat 25201_ITSM_Platform_Images.txt >> images.txt
-cat 25201_ITSM_SmartApps_Images.txt >> images.txt
-cat 25201_SupportAssistTool_Images.txt >> images.txt
+cat 25101_ITSM_Platform_Images.txt >> images.txt
+cat 25101_ITSM_Pipeline_Images.txt >> images.txt
+cat 25101_ITSM_SmartApps_Images.txt >> images.txt
+cat 25101_SupportAssistTool_Images.txt >> images.txt
 
 nohup ./image_sync_to_private_registry.sh > nohup.out &
 tail -f nohup.out
@@ -73,14 +76,14 @@ The image synchronization process may take several hours to one day.
 
 ## 3 Setup PostgreSQL database
 
-BMC Helix Service Management supports both case-insensitive and sensitive PostgreSQL13.x and 17.x databases. You must set up your PostgreSQL database before you deploy the BMC Helix Innovation Suite platform and applications. For detailed instructions on installing the postgresql database, please refer to:[Install PostgreSQL on Linux](https://www.postgresql.org/download/linux/redhat/)
+BMC Helix Service Management supports both case-insensitive and sensitive PostgreSQL13.x and 15.x databases. You must set up your PostgreSQL database before you deploy the BMC Helix Innovation Suite platform and applications. For detailed instructions on installing the postgresql database, please refer to:[Install PostgreSQL on Linux](https://www.postgresql.org/download/linux/redhat/)
 ```
-sudo dnf install -y https://download.postgresql.org/pub/repos/yum/reporpms/EL-9-x86_64/pgdg-redhat-repo-latest.noarch.rpm  
-sudo dnf -qy module disable postgresql  
-sudo dnf install -y postgresql17-server  
-sudo /usr/pgsql-17/bin/postgresql-17-setup initdb  
-sudo systemctl enable postgresql-17  
-sudo systemctl start postgresql-17
+sudo dnf install -y https://download.postgresql.org/pub/repos/yum/reporpms/EL-9-x86_64/pgdg-redhat-repo-latest.noarch.rpm
+sudo dnf -qy module disable postgresql
+sudo dnf install -y postgresql15-server
+sudo /usr/pgsql-15/bin/postgresql-15-setup initdb
+sudo systemctl enable postgresql-15
+sudo systemctl start postgresql-15
 ```
 Install postgres-contrib by using the following command:
 ```
@@ -94,15 +97,15 @@ echo "[INFO]: editing pg_hba.conf"
 sed -i '/^local   all/c\local   all             all                                     scram-sha-256' /var/lib/pgsql/15/data/pg_hba.conf
 sed -i '/^host    all             all             127.0.0.1/c\host    all             all             0.0.0.0\/0            scram-sha-256' /var/lib/pgsql/15/data/pg_hba.conf
 echo "[INFO]: editing postgresql.conf"
-sed -i "/^#listen_addresses = 'localhost'/c \listen_addresses = '*'" /var/lib/pgsql/17/data/postgresql.conf
-sed -i '/^#password_encryption = scram-sha-256/c \password_encryption = scram-sha-256' /var/lib/pgsql/17/data/postgresql.conf
-sed -i '/^max_connections = 100/c \max_connections = 600' /var/lib/pgsql/17/data/postgresql.conf
-sed -i '/^#random_page_cost = 4.0/c \random_page_cost = 1.1' /var/lib/pgsql/17/data/postgresql.conf
+sed -i "/^#listen_addresses = 'localhost'/c \listen_addresses = '*'" /var/lib/pgsql/15/data/postgresql.conf
+sed -i '/^#password_encryption = scram-sha-256/c \password_encryption = scram-sha-256' /var/lib/pgsql/15/data/postgresql.conf
+sed -i '/^max_connections = 100/c \max_connections = 600' /var/lib/pgsql/15/data/postgresql.conf
+sed -i '/^#random_page_cost = 4.0/c \random_page_cost = 1.1' /var/lib/pgsql/15/data/postgresql.conf
 EOF
 ```
 Restart PostgreSQL database 
 ```
-systemctl restart postgresql-17
+systemctl restart postgresql-15
 ```
 Add firewall rule for postgresql database
 ```
@@ -170,7 +173,6 @@ git ALL=(ALL) NOPASSWD: \
     /usr/bin/rpm, \
     /usr/bin/sed, \
     /usr/bin/su, \
-    /usr/bin/sha256sum, \
     /usr/sbin/subscription-manager, \
     /usr/bin/systemctl, \
     /usr/bin/unzip, \
@@ -226,13 +228,13 @@ kubectl get nodes
 ### 4.6 Run the BMC Deployment Engine automation script
 
 
-Copy the BMC_Helix_Innovation_Suite_And_Service_Management_Apps_Version_25.2.01.zip file downloaded from EPD and extract the files to the git user home directory
+Copy the BMC_Helix_Innovation_Suite_And_Service_Management_Apps_Version_25.1.01.zip file downloaded from EPD and extract the files to the git user home directory
 
 ```
 #Switch to the git user
 su - git
-unzip ./BMC_Helix_Innovation_Suite_And_Service_Management_Apps_Version_25.2.01.zip
-unzip ./BMC_Remedy_Deployment_Engine_Setup_25.2.01.zip
+unzip ./BMC_Helix_Innovation_Suite_And_Service_Management_Apps_Version_25.1.01.zip
+unzip ./BMC_Remedy_Deployment_Engine_Setup_25.1.01.zip
 cd DE1.0
 ```
 Update build.properties and customize the following parameters:
@@ -245,13 +247,13 @@ Update build.properties and customize the following parameters:
 * POSTGRES_VERSION
 * HELM_VERSION
 ```
-sed -i "/^ITSM_REPO_GIT_ZIP/c \ITSM_REPO_GIT_ZIP=/home/git/BMC_Remedy_Deployment_Manager_Configuration_Release_25.2.01.zip" /home/git/DE1.0/build.properties
+sed -i "/^ITSM_REPO_GIT_ZIP/c \ITSM_REPO_GIT_ZIP=/home/git/BMC_Remedy_Deployment_Manager_Configuration_Release_25.1.01.zip" /home/git/DE1.0/build.properties
 sed -i "/^JENKINS_CONFIG_FILES_ZIP_PATH/c \JENKINS_CONFIG_FILES_ZIP_PATH=/home/git/Jenkins_Config_Files.zip" /home/git/DE1.0/build.properties
 sed -i "/^LIBRARY_REPO_ZIP_PATH/c \LIBRARY_REPO_ZIP_PATH=/home/git/LIBRARY_REPO.zip" /home/git/DE1.0/build.properties
 sed -i "/^DB_TYPE/c \DB_TYPE=postgres" /home/git/DE1.0/build.properties
 sed -i "/^JENKINS_HOSTNAME/c \JENKINS_HOSTNAME=helix-svc.bmc.local" /home/git/DE1.0/build.properties
-sed -i "/^KUBERNETES_VERSION/c \KUBERNETES_VERSION=1.32.4" /home/git/DE1.0/build.properties
-sed -i "/^POSTGRES_VERSION/c \POSTGRES_VERSION=17" /home/git/DE1.0/build.properties
+sed -i "/^KUBERNETES_VERSION/c \KUBERNETES_VERSION=1.31.5" /home/git/DE1.0/build.properties
+sed -i "/^POSTGRES_VERSION/c \POSTGRES_VERSION=15" /home/git/DE1.0/build.properties
 sed -i "/^HELM_VERSION/c \HELM_VERSION=3.17.1" /home/git/DE1.0/build.properties
 ```
 
@@ -483,7 +485,7 @@ Click Authentication on the left tab, and enter the following details:
 
 ## 8 Install Helix Platform Common services
 
-Change value setting in /root/helix-on-prem-deployment-manager-25.2/configs/deployment.config
+Change value setting in /root/helix-on-prem-deployment-manager-25.1/configs/deployment.config
 
 | Line No. | Parameter | Value |
 | --- | --- | --- |
@@ -492,7 +494,7 @@ Change value setting in /root/helix-on-prem-deployment-manager-25.2/configs/depl
 
 Execute Deployment Manager script
 ```
-/root/helix-on-prem-deployment-manager-25.2/deployment-manager.sh
+/root/helix-on-prem-deployment-manager-25.1/deployment-manager.sh
 ```
 
 ## 9 Config HELIX_ONPREM_DEPLOYMENT pipeline
@@ -505,193 +507,134 @@ Click "Build with Parameters" on the left, fill in all the necessary parameters 
 
 Parameter Description
 
-**DEPLOYMENT ENGINE DETAILS** section:
-| Parameter | Value | Desc |
-| --- | --- | --- |
-| CUSTOM_BINARY_PATH | **NOT check** | Custom Binary Path to pick binaries |
-| AGENT | git-helix-svc.bmc.local | git-<Jenkins server host name>. |
-| CHECKOUT_USING_USER | github | Jenkins credential ID that contains the Git credentials. |
-| KUBECONFIG_CREDENTIAL | git-helix-svc.bmc.local | Provide KubeConfig Id from Credentials. |
-| GIT_USER_HOME_DIR | /home/git | Git user home directory |
-| GIT_REPO_DIR | ssh://helix-svc.bmc.local/home/git/git_repo | Directory that contains all the Git repositories |
-| HELM_NODE | helix-svc.bmc.local  | Host name of the Jenkins server installed HELM. |
-
-**ENVIRONMENT DETAILS** section:
-| Parameter | Value | Desc |
-| --- | --- | --- |
-| IS_CLOUD | **NOT check**  | Kubernetes/Openshift is on cloud environment. |
-| ROUTE_ENABLED | **NOT check**  | Do not select this check box. |
-| ROUTE_TLS_ENABLED | **NOT check**  | Do not select this check box. |
-| OS_RESTRICTED_SCC | **NOT check**  | OpenShift cluster have restricted security context constraints enabled. |
-| DEPLOYMENT_MODE | FRESH  | fresh installation |
-| CLUSTER | helix-compact | Find the cluster from the kubeconfig file |
-| CUSTOMER_NAME | itsmpoc | Specify the customer's full name |
-| IS_NAMESPACE | helixis | Namespace to install BMC Helix Innovation Suite |
-| CUSTOMER_SERVICE  | itsm |  |
-| ENVIRONMENT | poc |  |
-| INGRESS_CLASS | nginx |  |
-| CLUSTER_DOMAIN | bmc.local |  |
-| INPUT_CONFIG_METHOD | **NOT select** |  |
-| INPUT_CONFIG_FILE | **NOT select** |  |
-| CACERTS_FILE | cacerts | Upload cacerts with public certificate create in section 6 |
-| CACERTS_SSL_TRUSTSTORE_PASSWORD | **NOT change** | Leave this blank. Using default password changeit |
-| DB_SSL_CERT | **NOT select** | Postgres DB which has SSL enabled. Provide root.crt file |
-| CUSTOMER_SIZE | C | C stands for Compact |
-| SOURCE_VERSION | NA | Only Applicable in case of DEPLOYMENT_MODE as UPDATE or UPGRADE |
-| PLATFORM_HELM_VERSION | 2025101.1.00.00 | Target version of the Helm repositories |
-| SMARTAPPS_HELM_VERSION | 2025101.1.00.00 | Smart applications version of the Helm repositories. |
-
-**PRODUCTS** section:
-| Parameter | Value | Desc |
-| --- | --- | --- |
-| HELIX_VIRTUALCHAT | check | Helix Live Chat |
-| HELIX_OPENFIRE | check | Helix Openfire |
-| HELIX_DWP | check | Helix Digital Workplace |
-| HELIX_DWPA| check | Helix Digital Workplace Catalog|
-| HELIX_CLOUD_ACTIONS | check | Cloud Action connectors |
-| HELIX_BWF | check | Helix Business Workflows |
-| HELIX_MCSM | check | Helix Multi-Cloud Broker |
-| HELIX_ITSM_INSIGHTS| **NOT check** | Helix ITSM Insights, resoure consume high |
-| HELIX_TSOMPLUGIN| **NOT check** | TrueSight Operations Management plug-ins |
-| HELIX_SMARTAPPS_CSM | check | Helix Customer Service Management (CSM) |
-| HELIX_SMARTAPPS_FAS | check | Helix Portfolio Management |
-| HELIX_DRIFT_MANAGEMENTPLUGIN | check | Drift Management |
-| HELIX_CLAMAV | **NOT check** | |
-| HELIX_NETOPS | **NOT check** | |
-| HELIX_GPT | check | |
-| BWF_DEPLOY_SAMPLE_CONTENT_PACK | **NOT check** | Only in the development environments. | 
-| DWP_DEPLOY_SAMPLE_CONTENT_PACK | **NOT check** | Only in the development environments. | 
-| CLOUDACTIONS_DEPLOY_SAMPLE_CONTENT_PACK | **NOT check** | Only in the development environments. | 
-
-**LOGGING CONFIGURATION** section:
-| Parameter | Value | Desc |
-| --- | --- | --- |
-| SIDECAR_SUPPORT_ASSISTANT_FPACK | check | Support Assistant tool |
-| SIDECAR_FLUENTBIT | check | Support Assistant tool |
-| SIDECAR_FLUENT_DETAIL_LOG | check | Stream APIs, SQL, or filter logs to Elasticsearch |
-| LOGS_ELASTICSEARCH_HOSTNAME | efk-elasticsearch-data-hl.helixade | |
-| LOGS_ELASTICSEARCH_TLS | check | Select this check box. |
-| LOGS_ELASTICSEARCH_PASSWORD | kibana123| **KIBANA_PASSWORD** parameter in the **secrets.txt**|
-
-**SERVICE ACCOUNT** section:
-| Parameter | Value | Desc |
-| --- | --- | --- |
-| SUPPORT_ASSISTANT_CREATE_ROLE | check | Support Assistant tool creates a role and role binding |
-| SUPPORT_ASSISTANT_SERVICE_ACCOUNT | default | Default service account for Support Assistant tool installation |
-| ENABLE_PLATFORM_KEK_RBAC | check | To create a service account, role, and role binding for key encryption key (KEK) automatically through pipeline. |
-
-**PIPELINES** section:
-| Parameter | Value | Desc |
-| --- | --- | --- |
-| HELIX_GENERATE_CONFIG | check  | |
-| HELIX_PLATFORM_DEPLOY | check | |
-| HELIX_NONPLATFORM_DEPLOY | check | |
-| HELIX_CONFIGURE_ITSM | check | |
-| HELIX_SMARTAPPS_DEPLOY | check | |
-| SUPPORT_ASSISTANT_TOOL | check | Support Assistant Tool Application (UI) |
-| HELIX_INTEROPS_DEPLOY | check | Activate services for the BMC Helix Platform users|
-| FULL_STACK_UPGRADE | **NOT check** |Check if DEPLOYMENT_MODE is UPGRADE |
-| HELIX_POST_DEPLOY_CONFIG | **NOT check** | Do not select this parameter while installing the platform and applications |
-| HELIX_DR | **NOT check** | Do not select this option. |
-| SCALE_DOWN | **NOT check** | Do not select this option.|
-| HELIX_RESTART | **NOT check** | Restart all the application pods |
-
-**IMAGE REGISTRY DETAILS** section:
-| Parameter | Value | Desc |
-| --- | --- | --- |
-| REGISTRY_TYPE | DTR| |
-| HARBOR_REGISTRY_HOST | helix-harbor.bmc.local | |
-| DIMAGE_REGISTRY_USERNAME | admin | |
-| IMAGE_REGISTRY_PASSWORD | bmcAdm1n | Change Password |
-| IMAGESECRET_NAME | isharbor-secret | Specify the name used to create Kubernetes image registry secret. Prepare secret with command of: kubectl create secret docker-registry isharbor-secret --docker-server=helix-harbor.bmc.local --docker-username=admin --docker-password=bmcAdm1n -n helixis |
-
-**DATABASE DETAILS** section:
-| Parameter | Value | Desc |
-| --- | --- | --- |
-| DB_TYPE | postgres | |
-| DB_SSL_ENABLED | **NOT check** | select if encrypted DB connection is required. |
-| DB_JDBC_URL | **BLANK** | JDBC URL to use an Oracle database connectio. |
-| DB_PORT | 5432 | |
-| ORACLE_SERVICE_NAME | **BLANK** | Oracle Service Name. |
-| DATABASE_HOST_NAME | helix-svc.bmc.local| |
-| DATABASE_ADMIN_USER | postgres | |
-| DATABASE_ADMIN_PASSWORD | bmcAdm1n | |
-| DATABASE_RESTORE | check | Database restore is required. |
-| AR_DB_CASE_SENSITIVE | **NOT check** | Import case-sensitive PostgreSQL database dumps by using the DATABASE_RESTORE option.. |
-| IS_DATABASE_ALWAYS_ON | **NOT check** | Microsoft SQL database is in a high availability cluster. |
-| AR_DB_NAME | is_db | Helix Innovation Suite database |
-| AR_DB_USER | ARAdmin | Helix Innovation Suite database user |
-| AR_DB_PASSWORD | AR#Admin# | Password for BMC Helix Innovation Suite user |
-| PLATFORM_SR_DB_USER | **BLANK** | Leave this field blank. |
-| PLATFORM_SR_DB_PASSWORD | **BLANK** | Leave this field blank. |
-
-**PRODUCT CONFIGURATIONS** section:
-| Parameter | Value | Desc |
-| --- | --- | --- |
-| FTS_ELASTICSEARCH_HOSTNAME | opensearch-logs-data.helixade| |
-| FTS_ELASTICSEARCH_PORT | 9200 | |
-| FTS_ELASTICSEARCH_USERNAME | bmcuser | |
-| FTS_ELASTICSEARCH_USER_PASSWORD | Es_L0g#p@SS | LOG_ES_PASSWD value in secrets.txt |
-| FTS_ELASTICSEARCH_SECURE | check | |
-| AR_LOCALE_TO_INSTALL | zh_CN | Supported locales are fr, de, it, es, ja, ko, zh_CN, pt_BR, he, ru, and pl. English locale is installed by default. It take approximately **2 hours** to install one locale.|
-| BAKEDUSER_HANNAH_ADMIN_PASSWORD | hannah_admin | Password for BMC Helix Digital Workplace administrator user hannah_admin. The hannah_admin user in ADE is different from hannah_admin user in Innovation Suite  |
-| AR_SERVER_APP_SERVICE_PASSWORD | AR#Admin# | Specify the password to access applications |
-| AR_SERVER_DSO_USER_PASSWORD | AR#Admin# | Password to access the Distributed Server Option |
-| AR_SERVER_MIDTIER_SERVICE_PASSWORD | AR#Admin# | Password to access the Mid Tier |
-
-**PRODUCT CONFIGURATIONS** section:
-| Parameter | Value | Desc |
-| --- | --- | --- |
-| SMARTREPORTING_DB_NAME | SR | BMC Helix ITSM: Smart Reporting database |
-| SMARTREPORTING_DB_USER | SRAdmin | |
-| SMARTREPORTING_DB_PASSWORD | AR#Admin# | |
-| VC_RKM_USER_NAME | vc_admin | User name for Helix Virtual Agent |
-| VC_RKM_PASSWORD | AR#Admin# | Password for the Helix Virtual Agent user |
-| VC_PROXY_USER_LOGIN_NAME | vcp_admin | Proxy user login name for BMC Helix Virtual Agent |
-| VC_PROXY_USER_PASSWORD | AR#Admin# | |
-| DWP_CONFIG_PRIMARY_ORG_NAME | dwporg | Organization name for BMC Helix Digital Workplace |
-| AR_SERVER_ALIAS | onbmc-s | Alias name of AR System server |
-| PLATFORM_ADMIN_PLATFORM_EXTERNAL_IPS | [192.168.1.201,192.168.1.202,192.168.1.203,192.168.1.204] | External IP address to enable external access.The external IP must be in JSON list format within square brackets. |
-| ENABLE_PLATFORM_INT_NORMALIZATION | **NOT check** | Do not select this check box. |
-| MIDTIERCACHEBUILDER_TRIGGER_PRELOAD | check | Enable full data cache mode |
-| MIDTIERCACHEBUILDER_SCHEDULE | 0 1 * * * | Specify a cron job schedule for the Mid Tier cache builder job. |
-| AR_DATETIME | **BLANK** | Default system date and time is assigned.|
-| AR_TIMEZONE | Asia/Shanghai | |
-| ENABLE_EXTERNAL_SECRET_VAULT | **BLANK** | Select this check box to integrate and use a CyberArk vault for password management. |
-
-**RSSO PARAMETERS** section:
-| Parameter | Value | Desc |
-| --- | --- | --- |
-| RSSO_URL | https://lb.bmc.local/rsso | |
-| RSSO_ADMIN_USER | Admin | |
-| RSSO_ADMIN_PASSWORD | RSSO#Admin# | |
-| TENANT_DOMAIN | adelab.\<TENANT-ID\> | Value of the **Tenant** parameter |
-
-**ITSM INTEROPS PARAMETERS** section:
-| Parameter | Value | Desc |
-| --- | --- | --- |
-| HELIX_PLATFORM_DOMAIN | bmc.local | |
-| HELIX_PLATFORM_NAMESPACE | helixade | |
-| HELIX_PLATFORM_CUSTOMER_NAME | adelab | |
-
-**SELECT THE SERVICES FOR INTEROPERABILITY CONFIGURATION** section:
-| Parameter | Value | Desc |
-| --- | --- | --- |
-| BMC_HELIX_ITSM_INSIGHTS | **NOT check** | |
-| BMC_HELIX_SMART_IT | check | Enable BMC Helix ITSM: Smart IT. |
-| BMC_HELIX_BWF | check | Enable BMC Helix Business Workflows. |
-| BMC_HELIX_DWP | check | Enable BMC Helix Digital Workplace. |
-| BMC_HELIX_INNOVATION_STUDIO | check | Enable BMC Helix Innovation Studio. |
-| BMC_HELIX_DWPA | check | Enable BMC Helix Digital Workplace Catalog. |
-
-**SPLUNK CONFIGURATION DETAILS** section:
-| Parameter | Value | Desc |
-| --- | --- | --- |
-| SIDECAR_FLUENTBIT_OUTPUT_TYPE| **NOT check**| Select this check box. |
-| SIDECAR_FLUENT_SPLUNK_HOSTNAME | | Specify the Splunk host name. |
-| SIDECAR_FLUENT_SPLUNK_PORT| | Specify the Splunk port. |
-| SIDECAR_FLUENT_OUTPUT_CUSTOM | check | Specify the FluentBit output. |
-| SIDECAR_FLUENT_SPLUNK_TOKEN | check | Specify the Splunk token. |
+| Section | Parameter | Value | Desc |
+| --- | --- | --- | --- |
+| INFRASTRUCTURE | HELM_BINARY | helm | Helm binary that you have installed |
+| INFRASTRUCTURE | CUSTOM_BINARY_PATH | **NOT check** | Custom Binary Path to pick binaries |
+| INFRASTRUCTURE | AGENT | git-helix-svc.bmc.local | git-<Jenkins server host name>. |
+| INFRASTRUCTURE | CHECKOUT_USING_USER | github | Provide GIT REPO Id from Credentials. |
+| INFRASTRUCTURE | KUBECONFIG_CREDENTIAL | git-helix-svc.bmc.local | Provide KubeConfig Id from Credentials. |
+| CODE | GIT_USER_HOME_DIR | /home/git | Git user home directory |
+| CODE | GIT_REPO_DIR | ssh://helix-svc.bmc.local/home/git/git_repo | Directory that contains all the Git repositories |
+| CUSTOMER-INFO | IS_CLOUD | **NOT check**  | Kubernetes/Openshift is on cloud environment. |
+| CUSTOMER-INFO | ROUTE_ENABLED | **NOT check**  | Do not select this check box. |
+| CUSTOMER-INFO | ROUTE_TLS_ENABLED | **NOT check**  | Do not select this check box. |
+| CUSTOMER-INFO | OS_RESTRICTED_SCC | **NOT check**  | OpenShift cluster have restricted security context constraints enabled. |
+| CUSTOMER-INFO | DEPLOYMENT_MODE | FRESH  | fresh installation |
+| CUSTOMER-INFO | CLUSTER | helix-compact | Find the cluster from the kubeconfig file |
+| CUSTOMER-INFO | CUSTOMER_NAME | itsmpoc | Specify the customer's full name |
+| CUSTOMER-INFO | IS_NAMESPACE | helixis | Namespace to install BMC Helix Innovation Suite |
+| CUSTOMER-INFO | CUSTOMER_SERVICE  | itsm |  |
+| CUSTOMER-INFO | ENVIRONMENT | poc |  |
+| CUSTOMER-INFO | INGRESS_CLASS | nginx |  |
+| CUSTOMER-INFO | CLUSTER_DOMAIN | bmc.local |  |
+| CUSTOMER-INFO | INPUT_CONFIG_METHOD | **NOT select** |  |
+| CUSTOMER-INFO | CACERTS_FILE | cacerts | Upload cacerts with public certificate create in section 6 |
+| CUSTOMER-INFO | CACERTS_SSL_TRUSTSTORE_PASSWORD | **NOT change** | Leave this blank. Using default password changeit |
+| CUSTOMER-INFO | DB_SSL_CERT | **NOT select** | Postgres DB which has SSL enabled. Provide root.crt file |
+| CUSTOMER-INFO | CUSTOMER_SIZE | C | C stands for Compact |
+| CUSTOMER-INFO | SOURCE_VERSION | NA | Only Applicable in case of DEPLOYMENT_MODE as UPDATE or UPGRADE |
+| CUSTOMER-INFO | PLATFORM_HELM_VERSION | 2025101.1.00.00 | Target version of the Helm repositories |
+| CUSTOMER-INFO | SMARTAPPS_HELM_VERSION | 2025101.1.00.00 | Smart applications version of the Helm repositories. |
+| CUSTOMER-INFO | HELM_NODE | helix-svc.bmc.local | Hostname of the Jenkins server where HELM installed |
+| PRODUCTS | HELIX_VIRTUALCHAT | check | Helix Live Chat |
+| PRODUCTS | HELIX_OPENFIRE | check | Helix Openfire |
+| PRODUCTS | HELIX_DWP | check | Helix Digital Workplace |
+| PRODUCTS | HELIX_DWPA| check | Helix Digital Workplace Catalog|
+| PRODUCTS | HELIX_CLOUD_ACTIONS | check | Cloud Action connectors |
+| PRODUCTS | HELIX_BWF | check | Helix Business Workflows |
+| PRODUCTS | HELIX_MCSM | check | Helix Multi-Cloud Broker |
+| PRODUCTS | HELIX_ITSM_INSIGHTS| **NOT check** | Helix ITSM Insights, resoure consume high |
+| PRODUCTS | HELIX_TSOMPLUGIN| **NOT check** | TrueSight Operations Management plug-ins |
+| PRODUCTS | HELIX_SMARTAPPS_CSM | check | Helix Customer Service Management (CSM) |
+| PRODUCTS | HELIX_SMARTAPPS_FAS | check | Helix Portfolio Management |
+| PRODUCTS | HELIX_DRIFT_MANAGEMENTPLUGIN | check | Drift Management |
+| PRODUCTS | HELIX_CLAMAV | **NOT check** | |
+| PRODUCTS | HELIX_NETOPS | **NOT check** | |
+| PRODUCTS | HELIX_GPT | **NOT check** | |
+| LOGGING CONFIGURATION | SIDECAR_SUPPORT_ASSISTANT_FPACK | check | Support Assistant tool |
+| LOGGING CONFIGURATION | SUPPORT_ASSISTANT_CREATE_ROLE | check | Support Assistant tool creates a role and role binding |
+| LOGGING CONFIGURATION | SUPPORT_ASSISTANT_SERVICE_ACCOUNT | default | Default service account for Support Assistant tool installation |
+| LOGGING CONFIGURATION | SIDECAR_FLUENTBIT | check | install Fluent Bit |
+| LOGGING CONFIGURATION | SIDECAR_FLUENT_DETAIL_LOG | check | Stream APIs, SQL, or filter logs to Elasticsearch |
+| PRODUCT-DEPLOY | HELIX_GENERATE_CONFIG | check  | |
+| PRODUCT-DEPLOY | HELIX_PLATFORM_DEPLOY | check | |
+| PRODUCT-DEPLOY | HELIX_NONPLATFORM_DEPLOY | check | |
+| PRODUCT-DEPLOY | HELIX_CONFIGURE_ITSM | check | |
+| PRODUCT-DEPLOY | HELIX_SMARTAPPS_DEPLOY | check | |
+| PRODUCT-DEPLOY | SUPPORT_ASSISTANT_TOOL | check | Support Assistant Tool Application (UI) |
+| PRODUCT-DEPLOY | HELIX_INTEROPS_DEPLOY | check | Activate services for the BMC Helix Platform users|
+| PRODUCT-DEPLOY | FULL_STACK_UPGRADE | **NOT check** |Check if DEPLOYMENT_MODE is UPGRADE |
+| PRODUCT-DEPLOY | HELIX_POST_DEPLOY_CONFIG | **NOT check** | Do not select this parameter while installing the platform and applications |
+| PRODUCT-DEPLOY | HELIX_DR | **NOT check** | Do not select this option. |
+| PRODUCT-DEPLOY | SCALE_DOWN | **NOT check** | Do not select this option.|
+| PRODUCT-DEPLOY | HELIX_RESTART | **NOT check** | Restart all the application pods |
+| DATABASE_REGISTRY_STORAGE_PASSWORDS_SECRETS_DETAILS | REGISTRY_TYPE | DTR| |
+| DATABASE_REGISTRY_STORAGE_PASSWORDS_SECRETS_DETAILS | HARBOR_REGISTRY_HOST | helix-harbor.bmc.local | |
+| DATABASE_REGISTRY_STORAGE_PASSWORDS_SECRETS_DETAILS | IMAGE_REGISTRY_USERNAME | admin | |
+| DATABASE_REGISTRY_STORAGE_PASSWORDS_SECRETS_DETAILS | IMAGE_REGISTRY_PASSWORD | bmcAdm1n | Change Password |
+| DATABASE_REGISTRY_STORAGE_PASSWORDS_SECRETS_DETAILS | DB_TYPE | postgres | |
+| DATABASE_REGISTRY_STORAGE_PASSWORDS_SECRETS_DETAILS | DB_SSL_ENABLED | **NOT check** | select if encrypted DB connection is required. |
+| DATABASE_REGISTRY_STORAGE_PASSWORDS_SECRETS_DETAILS | DB_JDBC_URL | **BLANK** | JDBC URL to use an Oracle database connectio. |
+| DATABASE_REGISTRY_STORAGE_PASSWORDS_SECRETS_DETAILS | DB_PORT | 5432 | |
+| DATABASE_REGISTRY_STORAGE_PASSWORDS_SECRETS_DETAILS | ORACLE_SERVICE_NAME | **BLANK** | Oracle Service Name. |
+| DATABASE_REGISTRY_STORAGE_PASSWORDS_SECRETS_DETAILS | DATABASE_HOST_NAME | helix-svc.bmc.local| |
+| DATABASE_REGISTRY_STORAGE_PASSWORDS_SECRETS_DETAILS | DATABASE_ADMIN_USER | postgres | |
+| DATABASE_REGISTRY_STORAGE_PASSWORDS_SECRETS_DETAILS | DATABASE_ADMIN_PASSWORD | bmcAdm1n | |
+| DATABASE_REGISTRY_STORAGE_PASSWORDS_SECRETS_DETAILS | PLATFORM_SR_DB_JDBC_URL | **BLANK** | |
+| DATABASE_REGISTRY_STORAGE_PASSWORDS_SECRETS_DETAILS | DATABASE_RESTORE | check | Database restore is required. |
+| DATABASE_REGISTRY_STORAGE_PASSWORDS_SECRETS_DETAILS | AR_DB_CASE_SENSITIVE | **NOT check** | Import case-sensitive PostgreSQL database dumps by using the DATABASE_RESTORE option.. |
+| DATABASE_REGISTRY_STORAGE_PASSWORDS_SECRETS_DETAILS | IS_DATABASE_ALWAYS_ON | **NOT check** | Microsoft SQL database is in a high availability cluster. |
+| DATABASE_REGISTRY_STORAGE_PASSWORDS_SECRETS_DETAILS | LOGS_ELASTICSEARCH_HOSTNAME | efk-elasticsearch-data-hl.helixade | |
+| DATABASE_REGISTRY_STORAGE_PASSWORDS_SECRETS_DETAILS | LOGS_ELASTICSEARCH_TLS | check | Select this check box. |
+| DATABASE_REGISTRY_STORAGE_PASSWORDS_SECRETS_DETAILS | LOGS_ELASTICSEARCH_PASSWORD | kibana123| |
+| DATABASE_REGISTRY_STORAGE_PASSWORDS_SECRETS_DETAILS | FTS_ELASTICSEARCH_HOSTNAME | opensearch-logs-data.helixade| |
+| DATABASE_REGISTRY_STORAGE_PASSWORDS_SECRETS_DETAILS | FTS_ELASTICSEARCH_PORT | 9200 | |
+| DATABASE_REGISTRY_STORAGE_PASSWORDS_SECRETS_DETAILS | FTS_ELASTICSEARCH_USERNAME | bmcuser | |
+| DATABASE_REGISTRY_STORAGE_PASSWORDS_SECRETS_DETAILS | FTS_ELASTICSEARCH_USER_PASSWORD | Es_L0g#p@SS | LOG_ES_PASSWD value in secrets.txt |
+| DATABASE_REGISTRY_STORAGE_PASSWORDS_SECRETS_DETAILS | FTS_ELASTICSEARCH_SECURE | check | |
+| DATABASE_REGISTRY_STORAGE_PASSWORDS_SECRETS_DETAILS | AR_LOCALE_TO_INSTALL | zh_CN | Supported locales are fr, de, it, es, ja, ko, zh_CN, pt_BR, he, ru, and pl. English locale is installed by default. It take approximately **2 hours** to install one locale.|
+| DATABASE_REGISTRY_STORAGE_PASSWORDS_SECRETS_DETAILS | IMAGESECRET_NAME | isharbor-secret | |
+| DATABASE_REGISTRY_STORAGE_PASSWORDS_SECRETS_DETAILS | BAKEDUSER_HANNAH_ADMIN_PASSWORD | hannah_admin | Password for BMC Helix Digital Workplace administrator user hannah_admin. The hannah_admin user in ADE is different from hannah_admin user in Innovation Suite  |
+| DATABASE_REGISTRY_STORAGE_PASSWORDS_SECRETS_DETAILS | AR_DB_NAME | is_db | Helix Innovation Suite database |
+| DATABASE_REGISTRY_STORAGE_PASSWORDS_SECRETS_DETAILS | AR_DB_USER | ARAdmin | Helix Innovation Suite database user |
+| DATABASE_REGISTRY_STORAGE_PASSWORDS_SECRETS_DETAILS | AR_DB_PASSWORD | AR#Admin# | Password for BMC Helix Innovation Suite user |
+| DATABASE_REGISTRY_STORAGE_PASSWORDS_SECRETS_DETAILS | PLATFORM_SR_DB_USER | **BLANK** | Leave this field blank. |
+| DATABASE_REGISTRY_STORAGE_PASSWORDS_SECRETS_DETAILS | PLATFORM_SR_DB_PASSWORD | **BLANK** | Leave this field blank. |
+| DATABASE_REGISTRY_STORAGE_PASSWORDS_SECRETS_DETAILS | AR_SERVER_APP_SERVICE_PASSWORD | AR#Admin# | Specify the password to access applications |
+| DATABASE_REGISTRY_STORAGE_PASSWORDS_SECRETS_DETAILS | AR_SERVER_DSO_USER_PASSWORD | AR#Admin# | Password to access the Distributed Server Option |
+| DATABASE_REGISTRY_STORAGE_PASSWORDS_SECRETS_DETAILS | AR_SERVER_MIDTIER_SERVICE_PASSWORD | AR#Admin# | Password to access the Mid Tier |
+| DATABASE_REGISTRY_STORAGE_PASSWORDS_SECRETS_DETAILS | SMARTREPORTING_DB_NAME | SR | BMC Helix ITSM: Smart Reporting database |
+| DATABASE_REGISTRY_STORAGE_PASSWORDS_SECRETS_DETAILS | SMARTREPORTING_DB_USER | SRAdmin | |
+| DATABASE_REGISTRY_STORAGE_PASSWORDS_SECRETS_DETAILS | SMARTREPORTING_DB_PASSWORD | AR#Admin# | |
+| DATABASE_REGISTRY_STORAGE_PASSWORDS_SECRETS_DETAILS | VC_RKM_USER_NAME | vc_admin | User name for Helix Virtual Agent |
+| DATABASE_REGISTRY_STORAGE_PASSWORDS_SECRETS_DETAILS | VC_RKM_PASSWORD | AR#Admin# | Password for the Helix Virtual Agent user |
+| DATABASE_REGISTRY_STORAGE_PASSWORDS_SECRETS_DETAILS | VC_PROXY_USER_LOGIN_NAME | vcp_admin | Proxy user login name for BMC Helix Virtual Agent |
+| DATABASE_REGISTRY_STORAGE_PASSWORDS_SECRETS_DETAILS | VC_PROXY_USER_PASSWORD | AR#Admin# | |
+| DATABASE_REGISTRY_STORAGE_PASSWORDS_SECRETS_DETAILS | DWP_CONFIG_PRIMARY_ORG_NAME | dwporg | Organization name for BMC Helix Digital Workplace |
+| DATABASE_REGISTRY_STORAGE_PASSWORDS_SECRETS_DETAILS | AR_SERVER_ALIAS | onbmc-s | Alias name of AR System server |
+| DATABASE_REGISTRY_STORAGE_PASSWORDS_SECRETS_DETAILS | PLATFORM_ADMIN_PLATFORM_EXTERNAL_IPS | [192.168.1.201,192.168.1.202,192.168.1.203,192.168.1.204] | External IP address to enable external access.The external IP must be in JSON list format within square brackets. |
+| DATABASE_REGISTRY_STORAGE_PASSWORDS_SECRETS_DETAILS | ENABLE_PLATFORM_INT_NORMALIZATION | **NOT check** | Do not select this check box. |
+| DATABASE_REGISTRY_STORAGE_PASSWORDS_SECRETS_DETAILS | MIDTIERCACHEBUILDER_TRIGGER_PRELOAD | check | Enable full data cache mode |
+| DATABASE_REGISTRY_STORAGE_PASSWORDS_SECRETS_DETAILS | MIDTIERCACHEBUILDER_SCHEDULE | 0 1 * * * | Specify a cron job schedule for the Mid Tier cache builder job. |
+| DATABASE_REGISTRY_STORAGE_PASSWORDS_SECRETS_DETAILS | BWF_DEPLOY_SAMPLE_CONTENT_PACK | check | Deploy the BMC Helix Business Workflows sample content package. |
+| DATABASE_REGISTRY_STORAGE_PASSWORDS_SECRETS_DETAILS | DWP_DEPLOY_SAMPLE_CONTENT_PACK | check | Deploy the BMC Digital Workplace sample content package. |
+| DATABASE_REGISTRY_STORAGE_PASSWORDS_SECRETS_DETAILS | CLOUDACTIONS_DEPLOY_SAMPLE_CONTENT_PACK | check | Deploy the sample content package of Cloud Actions connectors. |
+| DATABASE_REGISTRY_STORAGE_PASSWORDS_SECRETS_DETAILS | AR_DATETIME | **BLANK** | Default system date and time is assigned.|
+| DATABASE_REGISTRY_STORAGE_PASSWORDS_SECRETS_DETAILS | AR_TIMEZONE | Asia/Shanghai | |
+| RSSO_PARAMETERS | RSSO_URL | https://lb.bmc.local/rsso | |
+| RSSO_PARAMETERS | RSSO_ADMIN_USER | Admin | |
+| RSSO_PARAMETERS | RSSO_ADMIN_PASSWORD | RSSO#Admin# | |
+| RSSO_PARAMETERS | TENANT_DOMAIN | adelab.1459264291 | adelab.\<TENANT-ID\> |
+| ITSM INTEROPS PARAMETERS | HELIX_PLATFORM_DOMAIN | bmc.local | |
+| ITSM INTEROPS PARAMETERS | HELIX_PLATFORM_NAMESPACE | helixade | |
+| ITSM INTEROPS PARAMETERS | HELIX_PLATFORM_CUSTOMER_NAME | adelab | |
+| SELECT THE SERVICES FOR INTEROPERABILITY CONFIGURATION | BMC_HELIX_ITSM_INSIGHTS | **NOT check** | |
+| SELECT THE SERVICES FOR INTEROPERABILITY CONFIGURATION | BMC_HELIX_SMART_IT | check | Enable BMC Helix ITSM: Smart IT. |
+| SELECT THE SERVICES FOR INTEROPERABILITY CONFIGURATION | BMC_HELIX_BWF | check | Enable BMC Helix Business Workflows. |
+| SELECT THE SERVICES FOR INTEROPERABILITY CONFIGURATION | BMC_HELIX_DWP | check | Enable BMC Helix Digital Workplace. |
+| SELECT THE SERVICES FOR INTEROPERABILITY CONFIGURATION | BMC_HELIX_INNOVATION_STUDIO | check | Enable BMC Helix Innovation Studio. |
+| SELECT THE SERVICES FOR INTEROPERABILITY CONFIGURATION | BMC_HELIX_DWPA | check | Enable BMC Helix Digital Workplace Catalog. |
 
 After filling in the form, click Build to start executing the pipeline.
 
@@ -769,3 +712,4 @@ admin
 https://itsm-poc-chat.bmc.local
 ```
 admin 
+
