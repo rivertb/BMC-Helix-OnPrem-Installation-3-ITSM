@@ -92,8 +92,8 @@ Update the pg_hba.conf file and postgresql.conf file:
 sudo su postgres <<'EOF'
 psql -c "ALTER USER postgres with encrypted password 'bmcAdm1n'"
 echo "[INFO]: editing pg_hba.conf"
-sed -i '/^local   all/c\local   all             all                                     scram-sha-256' /var/lib/pgsql/15/data/pg_hba.conf
-sed -i '/^host    all             all             127.0.0.1/c\host    all             all             0.0.0.0\/0            scram-sha-256' /var/lib/pgsql/15/data/pg_hba.conf
+sed -i '/^local   all/c\local   all             all                                     scram-sha-256' /var/lib/pgsql/17/data/pg_hba.conf
+sed -i '/^host    all             all             127.0.0.1/c\host    all             all             0.0.0.0\/0            scram-sha-256' /var/lib/pgsql/17/data/pg_hba.conf
 echo "[INFO]: editing postgresql.conf"
 sed -i "/^#listen_addresses = 'localhost'/c \listen_addresses = '*'" /var/lib/pgsql/17/data/postgresql.conf
 sed -i '/^#password_encryption = scram-sha-256/c \password_encryption = scram-sha-256' /var/lib/pgsql/17/data/postgresql.conf
@@ -779,4 +779,5 @@ admin
 ```
 https://itsm-poc-chat.bmc.local
 ```
+
 admin 
