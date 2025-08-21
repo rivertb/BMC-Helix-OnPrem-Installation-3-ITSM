@@ -645,7 +645,7 @@ Parameter Description
 | FTS_ELASTICSEARCH_USER_PASSWORD | Es_L0g#p@SS | LOG_ES_PASSWD value in secrets.txt |
 | FTS_ELASTICSEARCH_SECURE | check | |
 | AR_LOCALE_TO_INSTALL | zh_CN | Supported locales are fr, de, it, es, ja, ko, zh_CN, pt_BR, he, ru, and pl. English locale is installed by default. It take approximately **2 hours** to install one locale.|
-| BAKEDUSER_HANNAH_ADMIN_PASSWORD | hannah_admin | Password for BMC Helix Digital Workplace administrator user hannah_admin. The hannah_admin user in ADE is different from hannah_admin user in Innovation Suite  |
+| BAKEDUSER_HANNAH_ADMIN_PASSWORD | Password_1234 | Password for BMC Helix Digital Workplace administrator user hannah_admin. The hannah_admin user in ADE is different from hannah_admin user in Innovation Suite  |
 | AR_SERVER_APP_SERVICE_PASSWORD | AR#Admin# | Specify the password to access applications |
 | AR_SERVER_DSO_USER_PASSWORD | AR#Admin# | Password to access the Distributed Server Option |
 | AR_SERVER_MIDTIER_SERVICE_PASSWORD | AR#Admin# | Password to access the Mid Tier |
@@ -781,3 +781,4 @@ https://itsm-poc-chat.bmc.local
 ```
 
 admin 
+
