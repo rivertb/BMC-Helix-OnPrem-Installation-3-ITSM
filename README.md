@@ -41,7 +41,7 @@ The latest list of images required for BMC Helix Service Management installation
  * 253_Helix_Platform_Images.txt
  * 210503HF12_SmartReporting_Images.txt
 
-You can also copy from ~/BMC-Helix-OnPrem-Installation-1-Env/helix-itsm-images-files-25.2.01.
+You can also copy from ~/BMC-Helix-OnPrem-Installation-1-Env/helix-itsm-images-files-25.3.01.
 ```
 cp -R ~/BMC-Helix-OnPrem-Installation-1-Env/helix-itsm-images-files-25.3.01 /root/.
 cd /root/helix-itsm-images-files-25.3.01
@@ -780,6 +780,7 @@ https://itsm-poc-chat.bmc.local
 ```
 
 admin 
+
 
 
 
