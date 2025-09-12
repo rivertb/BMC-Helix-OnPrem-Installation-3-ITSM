@@ -25,47 +25,46 @@ You obtain the BMC Helix Service Management installation files by downloading th
 In the BMC Helix Innovation Suite OnPrem page, on the Product tab, select BMC Helix Innovation Suite & Service Management Apps latest version, such as  BMC Helix Innovation Suite & Service Management Apps latest version, such as 25.2.01 , and click Download.
 ![Innovation Suite](./diagram/innovation-suite.png)
 
-The BMC_Helix_Innovation_Suite_And_Service_Management_Apps_Version_25.2.01.zip file contains the following files:
+The BMC_Helix_Innovation_Suite_And_Service_Management_Apps_Version_25.3.01.zip file contains the following files:
 
-* BMC_Remedy_Deployment_Engine_Setup_25.2.01.zip—This file contains BMC Deployment Engine set up files.
-* BMC_Remedy_Deployment_Manager_Configuration_Release_25.2.01.zip—This file contains the installation artifacts.
+* BMC_Remedy_Deployment_Engine_Setup_25.3.01.zip—This file contains BMC Deployment Engine set up files.
+* BMC_Remedy_Deployment_Manager_Configuration_Release_25.3.01.zip—This file contains the installation artifacts.
 * image_pull_push.sh and image_sync_to_private_registry.sh—These files contain the scripts to synchronize your Harbor repository with BMC Helix Innovation Suite and BMC Helix Platform services container images in BMC DTR.
 
 ## 2 Sync Helix ITSM images to local Harbor
 
 The latest list of images required for BMC Helix Service Management installation can be download from [here](https://docs.bmc.com/xwiki/bin/view/Service-Management/On-Premises-Deployment/BMC-Helix-Service-Management-Deployment/brid25201/Installing/Preparing-for-installation/Setting-up-a-Harbor-repository-to-synchronize-container-images/), including:
- * 25201_ITSM_Platform_Images.txt
- * 25201_ITSM_SmartApps_Images.txt
- * 25201_ITSM_Pipeline_Images.txt
- * 25201_SupportAssistTool_Images.txt
- * 252_Helix_Platform_Images.txt
+ * 25301_ITSM_Platform_Images.txt
+ * 25301_ITSM_SmartApps_Images.txt
+ * 25301_ITSM_Pipeline_Images.txt
+ * 25301_SupportAssistTool_Images.txt
+ * 253_Helix_Platform_Images.txt
  * 210503HF12_SmartReporting_Images.txt
 
 You can also copy from ~/BMC-Helix-OnPrem-Installation-1-Env/helix-itsm-images-files-25.2.01.
 ```
-cp -R ~/BMC-Helix-OnPrem-Installation-1-Env/helix-itsm-images-files-25.2.01 /root/.
-cd /root/helix-itsm-images-files-25.2.01
+cp -R ~/BMC-Helix-OnPrem-Installation-1-Env/helix-itsm-images-files-25.3.01 /root/.
+cd /root/helix-itsm-images-files-25.3.01
 chmod a+x *.sh
 dnf install dos2unix -y
 dos2unix *.txt
 ls -l
 
--rw-r--r-- 1 root root  258 Jul 24 13:43 210503HF12_SmartReporting_Images.txt
--rw-r--r-- 1 root root 2236 Jul 24 13:43 25201_ITSM_Pipeline_Images.txt
--rw-r--r-- 1 root root 3250 Jul 24 13:43 25201_ITSM_Platform_Images.txt
--rw-r--r-- 1 root root 1587 Jul 24 13:43 25201_ITSM_SmartApps_Images.txt
--rw-r--r-- 1 root root  113 Jul 24 13:43 25201_SupportAssistTool_Images.txt
--rw-r--r-- 1 root root 5188 Jul 24 13:43 252_Helix_Platform_Images.txt
--rw-r--r-- 1 root root 1026 Jul 24 13:43 image_pull_push.sh
--rw-r--r-- 1 root root 2570 Jul 24 13:43 image_sync_to_private_registry.sh
+-rw-r--r-- 1 root root  255 Sep 10 15:20 210503HF12_SmartReporting_Images.txt
+-rw-r--r-- 1 root root 2383 Sep 10 15:20 25301_ITSM_Pipeline_Images.txt
+-rw-r--r-- 1 root root 3143 Sep 10 15:20 25301_ITSM_Platform_Images.txt
+-rw-r--r-- 1 root root 1648 Sep 10 15:20 25301_ITSM_SmartApps_Images.txt
+-rw-r--r-- 1 root root  115 Sep 10 15:20 25301_SupportAssistTool_Images.txt
+-rw-r--r-- 1 root root 4921 Sep 10 15:20 253_Helix_Platform_Images.txt
+
 ```
 Synchronize the Helix ITSM images from https://containers.bmc.com to local Harbor server.
 ```
 cat 210503HF12_SmartReporting_Images.txt > images.txt
-cat 25201_ITSM_Pipeline_Images.txt >> images.txt
-cat 25201_ITSM_Platform_Images.txt >> images.txt
-cat 25201_ITSM_SmartApps_Images.txt >> images.txt
-cat 25201_SupportAssistTool_Images.txt >> images.txt
+cat 25301_ITSM_Pipeline_Images.txt >> images.txt
+cat 25301_ITSM_Platform_Images.txt >> images.txt
+cat 25301_ITSM_SmartApps_Images.txt >> images.txt
+cat 25301_SupportAssistTool_Images.txt >> images.txt
 
 nohup ./image_sync_to_private_registry.sh > nohup.out &
 tail -f nohup.out
@@ -237,13 +236,13 @@ kubectl create secret docker-registry isharbor-secret \
 ### 4.7 Run the BMC Deployment Engine automation script
 
 
-Copy the BMC_Helix_Innovation_Suite_And_Service_Management_Apps_Version_25.2.01.zip file downloaded from EPD and extract the files to the git user home directory
+Copy the BMC_Helix_Innovation_Suite_And_Service_Management_Apps_Version_25.3.01.zip file downloaded from EPD and extract the files to the git user home directory
 
 ```
 #Switch to the git user
 su - git
-unzip ./BMC_Helix_Innovation_Suite_And_Service_Management_Apps_Version_25.2.01.zip
-unzip ./BMC_Remedy_Deployment_Engine_Setup_25.2.01.zip
+unzip ./BMC_Helix_Innovation_Suite_And_Service_Management_Apps_Version_25.3.01.zip
+unzip ./BMC_Remedy_Deployment_Engine_Setup_25.3.01.zip
 cd DE1.0
 ```
 Update build.properties and customize the following parameters:
@@ -494,12 +493,12 @@ Click Authentication on the left tab, and enter the following details:
 
 ## 8 Install Helix Platform Common services
 
-Change value setting in /root/helix-on-prem-deployment-manager-25.2/configs/deployment.config
+Change value setting in /root/helix-on-prem-deployment-manager-25.3/configs/deployment.config
 
 | Line No. | Parameter | Value |
 | --- | --- | --- |
-| 48 | LOG_ANALYTICS_SERVICES | yes |
-| 57 | ARSERVICES | yes |
+| 57 | LOG_ANALYTICS_SERVICES | yes |
+| 66 | ARSERVICES | yes |
 
 Execute Deployment Manager script
 ```
@@ -781,4 +780,5 @@ https://itsm-poc-chat.bmc.local
 ```
 
 admin 
+
 
