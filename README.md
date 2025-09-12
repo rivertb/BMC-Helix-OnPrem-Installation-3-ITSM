@@ -22,7 +22,7 @@ You obtain the BMC Helix Service Management installation files by downloading th
 * Git repositories and artifacts that are used for BMC Helix Service Management installation
 * Deployment manager that is used for BMC Helix Platform Common Services installation (Already download in [ITOM](https://github.com/rivertb/BMC-Helix-OnPrem-Installation-2-ITOM) project)
 
-In the BMC Helix Innovation Suite OnPrem page, on the Product tab, select BMC Helix Innovation Suite & Service Management Apps latest version, such as  BMC Helix Innovation Suite & Service Management Apps latest version, such as 25.2.01 , and click Download.
+In the BMC Helix Innovation Suite OnPrem page, on the Product tab, select BMC Helix Innovation Suite & Service Management Apps latest version, such as  BMC Helix Innovation Suite & Service Management Apps latest version, such as 25.3.01 , and click Download.
 ![Innovation Suite](./diagram/innovation-suite.png)
 
 The BMC_Helix_Innovation_Suite_And_Service_Management_Apps_Version_25.3.01.zip file contains the following files:
@@ -255,7 +255,7 @@ Update build.properties and customize the following parameters:
 * POSTGRES_VERSION
 * HELM_VERSION
 ```
-sed -i "/^ITSM_REPO_GIT_ZIP/c \ITSM_REPO_GIT_ZIP=/home/git/BMC_Remedy_Deployment_Manager_Configuration_Release_25.2.01.zip" /home/git/DE1.0/build.properties
+sed -i "/^ITSM_REPO_GIT_ZIP/c \ITSM_REPO_GIT_ZIP=/home/git/BMC_Remedy_Deployment_Manager_Configuration_Release_25.3.01.zip" /home/git/DE1.0/build.properties
 sed -i "/^JENKINS_CONFIG_FILES_ZIP_PATH/c \JENKINS_CONFIG_FILES_ZIP_PATH=/home/git/Jenkins_Config_Files.zip" /home/git/DE1.0/build.properties
 sed -i "/^LIBRARY_REPO_ZIP_PATH/c \LIBRARY_REPO_ZIP_PATH=/home/git/LIBRARY_REPO.zip" /home/git/DE1.0/build.properties
 sed -i "/^DB_TYPE/c \DB_TYPE=postgres" /home/git/DE1.0/build.properties
@@ -502,7 +502,7 @@ Change value setting in /root/helix-on-prem-deployment-manager-25.3/configs/depl
 
 Execute Deployment Manager script
 ```
-/root/helix-on-prem-deployment-manager-25.2/deployment-manager.sh
+/root/helix-on-prem-deployment-manager-25.3/deployment-manager.sh
 ```
 
 ## 9 Config HELIX_ONPREM_DEPLOYMENT pipeline
@@ -780,5 +780,6 @@ https://itsm-poc-chat.bmc.local
 ```
 
 admin 
+
 
 
