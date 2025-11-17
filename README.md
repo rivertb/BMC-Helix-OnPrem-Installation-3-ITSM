@@ -75,13 +75,10 @@ The image synchronization process may take several hours to one day.
 
 BMC Helix Service Management supports both case-insensitive and sensitive PostgreSQL13.x and 17.x databases. You must set up your PostgreSQL database before you deploy the BMC Helix Innovation Suite platform and applications. 
 
-PostgreSQL 17 is not officially packaged/tested for Rocky Linux 9 yet.
+From 2025, You can still use PostgreSQL 17 via source compilation or container images, but RPM-based support is missing due to library and packaging compatibility issues.
 
-You can still use it via source compilation or container images, but RPM-based support is missing due to library and packaging compatibility issues.
+It's better to run PostgreSQL 17 in a Docker container or Podman image, which avoids host OS dependency issues:
 
-PostgreSQL 17 is not officially packaged/tested for Rocky Linux 9 yet.
-
-You can still use it via source compilation or container images, but RPM-based support is missing due to library and packaging compatibility issues.
 ===========================================
 ```
 docker run -d \
@@ -93,53 +90,6 @@ docker run -d \
   -p 5432:5432 \
   postgres:17
 ```
-
-
-For detailed instructions on installing the postgresql database, please refer to:[Install PostgreSQL on Linux](https://www.postgresql.org/download/linux/redhat/)
-```
-sudo dnf install -y https://download.postgresql.org/pub/repos/yum/reporpms/EL-9-x86_64/pgdg-redhat-repo-latest.noarch.rpm  
-sudo dnf -qy module disable postgresql  
-sudo dnf install -y postgresql17-server  
-sudo /usr/pgsql-17/bin/postgresql-17-setup initdb  
-sudo systemctl enable postgresql-17  
-sudo systemctl start postgresql-17
-```
-Install postgres-contrib by using the following command:
-```
-yum install postgres*contrib -y
-```
-Update the pg_hba.conf file and postgresql.conf file:
-```
-sudo su postgres <<'EOF'
-psql -c "ALTER USER postgres with encrypted password 'bmcAdm1n'"
-echo "[INFO]: editing pg_hba.conf"
-sed -i '/^local   all/c\local   all             all                                     scram-sha-256' /var/lib/pgsql/17/data/pg_hba.conf
-sed -i '/^host    all             all             127.0.0.1/c\host    all             all             0.0.0.0\/0            scram-sha-256' /var/lib/pgsql/17/data/pg_hba.conf
-echo "[INFO]: editing postgresql.conf"
-sed -i "/^#listen_addresses = 'localhost'/c \listen_addresses = '*'" /var/lib/pgsql/17/data/postgresql.conf
-sed -i '/^#password_encryption = scram-sha-256/c \password_encryption = scram-sha-256' /var/lib/pgsql/17/data/postgresql.conf
-sed -i '/^max_connections = 100/c \max_connections = 600' /var/lib/pgsql/17/data/postgresql.conf
-sed -i '/^#random_page_cost = 4.0/c \random_page_cost = 1.1' /var/lib/pgsql/17/data/postgresql.conf
-EOF
-```
-Restart PostgreSQL database 
-```
-systemctl restart postgresql-17
-```
-Add firewall rule for postgresql database
-```
-firewall-cmd --zone=internal --permanent --add-service=postgresql
-firewall-cmd --zone=external --permanent --add-service=postgresql
-firewall-cmd --reload
-```
-Check the database server parameter value for max_connections
-```
-sudo su postgres <<'EOF'
-export PGPASSWORD=bmcAdm1n
-psql -U postgres -c "show max_connections;"
-EOF
-```
-
 
 ## 4 Setup Helix Deployment Engine
 ### 4.1 Update libraries and packages
@@ -802,6 +752,7 @@ https://itsm-poc-chat.bmc.local
 ```
 
 admin 
+
 
 
 
