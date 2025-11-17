@@ -73,7 +73,29 @@ The image synchronization process may take several hours to one day.
 
 ## 3 Setup PostgreSQL database
 
-BMC Helix Service Management supports both case-insensitive and sensitive PostgreSQL13.x and 17.x databases. You must set up your PostgreSQL database before you deploy the BMC Helix Innovation Suite platform and applications. For detailed instructions on installing the postgresql database, please refer to:[Install PostgreSQL on Linux](https://www.postgresql.org/download/linux/redhat/)
+BMC Helix Service Management supports both case-insensitive and sensitive PostgreSQL13.x and 17.x databases. You must set up your PostgreSQL database before you deploy the BMC Helix Innovation Suite platform and applications. 
+
+PostgreSQL 17 is not officially packaged/tested for Rocky Linux 9 yet.
+
+You can still use it via source compilation or container images, but RPM-based support is missing due to library and packaging compatibility issues.
+
+PostgreSQL 17 is not officially packaged/tested for Rocky Linux 9 yet.
+
+You can still use it via source compilation or container images, but RPM-based support is missing due to library and packaging compatibility issues.
+===========================================
+```
+docker run -d \
+  --name pg17 \
+  -e POSTGRES_PASSWORD=bmcAdm1n \
+  -e POSTGRES_USER=postgres \
+  -e POSTGRES_DB=postgres \
+  -v /opt/pg17_data:/var/lib/postgresql/data \
+  -p 5432:5432 \
+  postgres:17
+```
+
+
+For detailed instructions on installing the postgresql database, please refer to:[Install PostgreSQL on Linux](https://www.postgresql.org/download/linux/redhat/)
 ```
 sudo dnf install -y https://download.postgresql.org/pub/repos/yum/reporpms/EL-9-x86_64/pgdg-redhat-repo-latest.noarch.rpm  
 sudo dnf -qy module disable postgresql  
@@ -780,6 +802,7 @@ https://itsm-poc-chat.bmc.local
 ```
 
 admin 
+
 
 
 
