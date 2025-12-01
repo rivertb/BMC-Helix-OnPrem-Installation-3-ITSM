@@ -520,8 +520,8 @@ Parameter Description
 | DB_SSL_CERT | **NOT select** | Postgres DB which has SSL enabled. Provide root.crt file |
 | CUSTOMER_SIZE | C | C stands for Compact |
 | SOURCE_VERSION | NA | Only Applicable in case of DEPLOYMENT_MODE as UPDATE or UPGRADE |
-| PLATFORM_HELM_VERSION | 2025101.1.00.00 | Target version of the Helm repositories |
-| SMARTAPPS_HELM_VERSION | 2025101.1.00.00 | Smart applications version of the Helm repositories. |
+| PLATFORM_HELM_VERSION | 2025401.1.00.00 | Target version of the Helm repositories |
+| SMARTAPPS_HELM_VERSION | 2025401.1.00.00 | Smart applications version of the Helm repositories. |
 
 **PRODUCTS** section:
 | Parameter | Value | Desc |
@@ -752,6 +752,7 @@ https://itsm-poc-chat.bmc.local
 ```
 
 admin 
+
 
 
 
