@@ -517,7 +517,7 @@ Parameter Description
 | CLUSTER_DOMAIN | bmc.local |  |
 | INPUT_CONFIG_METHOD | **NOT select** |  |
 | INPUT_CONFIG_FILE | **NOT select** |  |
-| CACERTS_FILE | cacerts | Upload cacerts with public certificate create in section 6 |
+| CUSTOM_CERTIFICATE | cacerts | Upload cacerts with public certificate create in section 6 |
 | CACERTS_SSL_TRUSTSTORE_PASSWORD | **NOT change** | Leave this blank. Using default password changeit |
 | DB_SSL_CERT | **NOT select** | Postgres DB which has SSL enabled. Provide root.crt file |
 | CUSTOMER_SIZE | C | C stands for Compact |
@@ -755,6 +755,7 @@ https://itsm-poc-chat.bmc.local
 ```
 
 admin 
+
 
 
 
