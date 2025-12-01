@@ -209,13 +209,13 @@ kubectl create secret docker-registry isharbor-secret \
 ### 4.7 Run the BMC Deployment Engine automation script
 
 
-Copy the BMC_Helix_Innovation_Suite_And_Service_Management_Apps_Version_25.3.01.zip file downloaded from EPD and extract the files to the git user home directory
+Copy the BMC_Helix_Innovation_Suite_And_Service_Management_Apps_Version_25.4.01.zip file downloaded from EPD and extract the files to the git user home directory
 
 ```
 #Switch to the git user
 su - git
-unzip ./BMC_Helix_Innovation_Suite_And_Service_Management_Apps_Version_25.3.01.zip
-unzip ./BMC_Remedy_Deployment_Engine_Setup_25.3.01.zip
+unzip ./BMC_Helix_Innovation_Suite_And_Service_Management_Apps_Version_25.4.01.zip
+unzip ./BMC_Remedy_Deployment_Engine_Setup_25.4.01.zip
 cd DE1.0
 ```
 Update build.properties and customize the following parameters:
@@ -228,7 +228,7 @@ Update build.properties and customize the following parameters:
 * POSTGRES_VERSION
 * HELM_VERSION
 ```
-sed -i "/^ITSM_REPO_GIT_ZIP/c \ITSM_REPO_GIT_ZIP=/home/git/BMC_Remedy_Deployment_Manager_Configuration_Release_25.3.01.zip" /home/git/DE1.0/build.properties
+sed -i "/^ITSM_REPO_GIT_ZIP/c \ITSM_REPO_GIT_ZIP=/home/git/BMC_Remedy_Deployment_Manager_Configuration_Release_25.4.01.zip" /home/git/DE1.0/build.properties
 sed -i "/^JENKINS_CONFIG_FILES_ZIP_PATH/c \JENKINS_CONFIG_FILES_ZIP_PATH=/home/git/Jenkins_Config_Files.zip" /home/git/DE1.0/build.properties
 sed -i "/^LIBRARY_REPO_ZIP_PATH/c \LIBRARY_REPO_ZIP_PATH=/home/git/LIBRARY_REPO.zip" /home/git/DE1.0/build.properties
 sed -i "/^DB_TYPE/c \DB_TYPE=postgres" /home/git/DE1.0/build.properties
@@ -466,7 +466,7 @@ Click Authentication on the left tab, and enter the following details:
 
 ## 8 Install Helix Platform Common services
 
-Change value setting in /root/helix-on-prem-deployment-manager-25.3/configs/deployment.config
+Change value setting in /root/helix-on-prem-deployment-manager-25.4/configs/deployment.config
 
 | Line No. | Parameter | Value |
 | --- | --- | --- |
@@ -475,7 +475,7 @@ Change value setting in /root/helix-on-prem-deployment-manager-25.3/configs/depl
 
 Execute Deployment Manager script
 ```
-/root/helix-on-prem-deployment-manager-25.3/deployment-manager.sh
+/root/helix-on-prem-deployment-manager-25.4/deployment-manager.sh
 ```
 
 ## 9 Config HELIX_ONPREM_DEPLOYMENT pipeline
@@ -755,6 +755,7 @@ https://itsm-poc-chat.bmc.local
 ```
 
 admin 
+
 
 
 
