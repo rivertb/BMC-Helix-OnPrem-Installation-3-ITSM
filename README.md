@@ -1,4 +1,5 @@
 
+
 # BMC Helix ITOM & ITSM OnPrem Installation Step by Step 3 - ITSM
 
 - [BMC HelixOM ITOM & ITSM OnPrem Installation Step by Step 3 - ITSM](#bmc-helixom-itom-&-itsm-onprem-installation-step-by-step-3---itsm)
@@ -493,7 +494,7 @@ Parameter Description
 | CUSTOM_BINARY_PATH | **NOT check** | Custom Binary Path to pick binaries |
 | AGENT | git-helix-svc.bmc.local | git-<Jenkins server host name>. |
 | CHECKOUT_USING_USER | github | Jenkins credential ID that contains the Git credentials. |
-| KUBECONFIG_CREDENTIAL | git-helix-svc.bmc.local | Provide KubeConfig Id from Credentials. |
+| KUBECONFIG_CREDENTIAL | kubeconfig | Provide KubeConfig Id from Credentials. |
 | GIT_USER_HOME_DIR | /home/git | Git user home directory |
 | GIT_REPO_DIR | ssh://helix-svc.bmc.local/home/git/git_repo | Directory that contains all the Git repositories |
 | HELM_NODE | helix-svc.bmc.local  | Host name of the Jenkins server installed HELM. |
@@ -505,8 +506,9 @@ Parameter Description
 | ROUTE_ENABLED | **NOT check**  | Do not select this check box. |
 | ROUTE_TLS_ENABLED | **NOT check**  | Do not select this check box. |
 | OS_RESTRICTED_SCC | **NOT check**  | OpenShift cluster have restricted security context constraints enabled. |
-| DEPLOYMENT_MODE | FRESH  | fresh installation |
-| CLUSTER | helix-compact | Find the cluster from the kubeconfig file |
+| DEPLOYMENT_TYPE| FRESH  | fresh installation |
+| DEPLOYMENT_MODE | FULL  | Loads all available BMC Helix Service Management components and applications into memory |
+| CLUSTER_CONTEXT | helix-compact | Specify the value of the Kubernetes cluster context. |
 | CUSTOMER_NAME | itsmpoc | Specify the customer's full name |
 | IS_NAMESPACE | helixis | Namespace to install BMC Helix Innovation Suite |
 | CUSTOMER_SERVICE  | itsm |  |
@@ -540,7 +542,8 @@ Parameter Description
 | HELIX_DRIFT_MANAGEMENTPLUGIN | check | Drift Management |
 | HELIX_CLAMAV | **NOT check** | |
 | HELIX_NETOPS | **NOT check** | |
-| HELIX_GPT | check | |
+| HELIX_GPT | check | BMC Helix GPT |
+| HELIX_DSO | check | Distributed Server Option (DSO) service in BMC Helix Innovation Suite |
 | BWF_DEPLOY_SAMPLE_CONTENT_PACK | **NOT check** | Only in the development environments. | 
 | DWP_DEPLOY_SAMPLE_CONTENT_PACK | **NOT check** | Only in the development environments. | 
 | CLOUDACTIONS_DEPLOY_SAMPLE_CONTENT_PACK | **NOT check** | Only in the development environments. | 
@@ -752,6 +755,7 @@ https://itsm-poc-chat.bmc.local
 ```
 
 admin 
+
 
 
 
