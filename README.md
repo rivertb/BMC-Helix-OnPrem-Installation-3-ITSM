@@ -23,13 +23,13 @@ You obtain the BMC Helix Service Management installation files by downloading th
 * Git repositories and artifacts that are used for BMC Helix Service Management installation
 * Deployment manager that is used for BMC Helix Platform Common Services installation (Already download in [ITOM](https://github.com/rivertb/BMC-Helix-OnPrem-Installation-2-ITOM) project)
 
-In the BMC Helix Innovation Suite OnPrem page, on the Product tab, select BMC Helix Innovation Suite & Service Management Apps latest version, such as  BMC Helix Innovation Suite & Service Management Apps latest version, such as 25.3.01 , and click Download.
+In the BMC Helix Innovation Suite OnPrem page, on the Product tab, select BMC Helix Innovation Suite & Service Management Apps latest version, such as  BMC Helix Innovation Suite & Service Management Apps latest version, such as 25.4.01 , and click Download.
 ![Innovation Suite](./diagram/innovation-suite.png)
 
-The BMC_Helix_Innovation_Suite_And_Service_Management_Apps_Version_25.3.01.zip file contains the following files:
+The BMC_Helix_Innovation_Suite_And_Service_Management_Apps_Version_25.4.01.zip file contains the following files:
 
-* BMC_Remedy_Deployment_Engine_Setup_25.3.01.zip—This file contains BMC Deployment Engine set up files.
-* BMC_Remedy_Deployment_Manager_Configuration_Release_25.3.01.zip—This file contains the installation artifacts.
+* BMC_Remedy_Deployment_Engine_Setup_25.4.01.zip—This file contains BMC Deployment Engine set up files.
+* BMC_Remedy_Deployment_Manager_Configuration_Release_25.4.01.zip—This file contains the installation artifacts.
 * image_pull_push.sh and image_sync_to_private_registry.sh—These files contain the scripts to synchronize your Harbor repository with BMC Helix Innovation Suite and BMC Helix Platform services container images in BMC DTR.
 
 ## 2 Sync Helix ITSM images to local Harbor
@@ -42,30 +42,30 @@ The latest list of images required for BMC Helix Service Management installation
  * 253_Helix_Platform_Images.txt
  * 210503HF12_SmartReporting_Images.txt
 
-You can also copy from ~/BMC-Helix-OnPrem-Installation-1-Env/helix-itsm-images-files-25.3.01.
+You can also copy from ~/BMC-Helix-OnPrem-Installation-1-Env/helix-itsm-images-files-25.4.01.
 ```
-cp -R ~/BMC-Helix-OnPrem-Installation-1-Env/helix-itsm-images-files-25.3.01 /root/.
-cd /root/helix-itsm-images-files-25.3.01
+cp -R ~/BMC-Helix-OnPrem-Installation-1-Env/helix-itsm-images-files-25.4.01 /root/.
+cd /root/helix-itsm-images-files-25.4.01
 chmod a+x *.sh
 dnf install dos2unix -y
 dos2unix *.txt
 ls -l
 
--rw-r--r-- 1 root root  255 Sep 10 15:20 210503HF12_SmartReporting_Images.txt
--rw-r--r-- 1 root root 2383 Sep 10 15:20 25301_ITSM_Pipeline_Images.txt
--rw-r--r-- 1 root root 3143 Sep 10 15:20 25301_ITSM_Platform_Images.txt
--rw-r--r-- 1 root root 1648 Sep 10 15:20 25301_ITSM_SmartApps_Images.txt
--rw-r--r-- 1 root root  115 Sep 10 15:20 25301_SupportAssistTool_Images.txt
--rw-r--r-- 1 root root 4921 Sep 10 15:20 253_Helix_Platform_Images.txt
+-rw-r--r-- 1 root root  118 Nov 24 09:41 25401_SupportAssistTool_Images.txt
+-rw-r--r-- 1 root root 1599 Nov 24 09:41 25401_ITSM_SmartApps_Images.txt
+-rw-r--r-- 1 root root 3328 Nov 24 09:41 25401_ITSM_Platform_Images.txt
+-rw-r--r-- 1 root root 2572 Nov 24 09:41 25401_ITSM_Pipeline_Images.txt
+-rw-r--r-- 1 root root  255 Nov 24 09:41 210503HF12_SmartReporting_Images.txt
+-rw-r--r-- 1 root root 4848 Nov 24 09:41 254_Helix_Platform_Images.txt
 
 ```
 Synchronize the Helix ITSM images from https://containers.bmc.com to local Harbor server.
 ```
 cat 210503HF12_SmartReporting_Images.txt > images.txt
-cat 25301_ITSM_Pipeline_Images.txt >> images.txt
-cat 25301_ITSM_Platform_Images.txt >> images.txt
-cat 25301_ITSM_SmartApps_Images.txt >> images.txt
-cat 25301_SupportAssistTool_Images.txt >> images.txt
+cat 25401_ITSM_Pipeline_Images.txt >> images.txt
+cat 25401_ITSM_Platform_Images.txt >> images.txt
+cat 25401_ITSM_SmartApps_Images.txt >> images.txt
+cat 25401_SupportAssistTool_Images.txt >> images.txt
 
 nohup ./image_sync_to_private_registry.sh > nohup.out &
 tail -f nohup.out
@@ -755,6 +755,7 @@ https://itsm-poc-chat.bmc.local
 ```
 
 admin 
+
 
 
 
