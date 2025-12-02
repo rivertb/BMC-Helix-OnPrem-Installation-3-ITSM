@@ -84,6 +84,7 @@ It's better to run PostgreSQL 17 in a Docker container or Podman image, which av
 ```
 docker run -d \
   --name pg17 \
+  --shm-size=2g \
   -e POSTGRES_PASSWORD=bmcAdm1n \
   -e POSTGRES_USER=postgres \
   -e POSTGRES_DB=postgres \
@@ -755,6 +756,7 @@ https://itsm-poc-chat.bmc.local
 ```
 
 admin 
+
 
 
 
