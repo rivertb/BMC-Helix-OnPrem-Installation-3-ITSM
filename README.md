@@ -564,6 +564,7 @@ Parameter Description
 | --- | --- | --- |
 | SUPPORT_ASSISTANT_CREATE_ROLE | check | Support Assistant tool creates a role and role binding |
 | SUPPORT_ASSISTANT_SERVICE_ACCOUNT | default | Default service account for Support Assistant tool installation |
+| COMMON_IS_SERVICE_ACCOUNT | sa-is-common | Specify the value as sa-is-common |
 | ENABLE_PLATFORM_KEK_RBAC | check | To create a service account, role, and role binding for key encryption key (KEK) automatically through pipeline. |
 
 **PIPELINES** section:
@@ -756,6 +757,7 @@ https://itsm-poc-chat.bmc.local
 ```
 
 admin 
+
 
 
 
