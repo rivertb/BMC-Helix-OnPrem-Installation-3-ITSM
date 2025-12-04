@@ -629,7 +629,7 @@ Parameter Description
 | DATABASE_ADMIN_USER | postgres | |
 | DATABASE_ADMIN_PASSWORD | bmcAdm1n | |
 | DATABASE_RESTORE | check | Database restore is required. |
-| AR_DB_CASE_SENSITIVE | **NOT check** | Import case-sensitive PostgreSQL database dumps by using the DATABASE_RESTORE option.. |
+| AR_DB_CASE_SENSITIVE | check | Import case-sensitive PostgreSQL database dumps by using the DATABASE_RESTORE option.. |
 | IS_DATABASE_ALWAYS_ON | **NOT check** | Microsoft SQL database is in a high availability cluster. |
 | AR_DB_NAME | is_db | Helix Innovation Suite database |
 | AR_DB_USER | ARAdmin | Helix Innovation Suite database user |
@@ -782,6 +782,7 @@ https://itsm-poc-chat.bmc.local
 ```
 
 admin 
+
 
 
 
