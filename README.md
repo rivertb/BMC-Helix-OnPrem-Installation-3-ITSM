@@ -580,7 +580,7 @@ Parameter Description
 | SIDECAR_SUPPORT_ASSISTANT_FPACK | check | Support Assistant tool |
 | SIDECAR_FLUENTBIT | check | Support Assistant tool |
 | SIDECAR_FLUENT_DETAIL_LOG | check | Stream APIs, SQL, or filter logs to Elasticsearch |
-| LOGS_ELASTICSEARCH_HOSTNAME | efk-elasticsearch-data-hl.helixade | |
+| LOGS_ELASTICSEARCH_HOSTNAME | efk-elasticsearch-data-hl.bmc-helix-logging | |
 | LOGS_ELASTICSEARCH_TLS | check | Select this check box. |
 | LOGS_ELASTICSEARCH_PASSWORD | kibana123| **KIBANA_PASSWORD** parameter in the **secrets.txt**|
 
@@ -782,6 +782,7 @@ https://itsm-poc-chat.bmc.local
 ```
 
 admin 
+
 
 
 
