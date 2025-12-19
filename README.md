@@ -582,7 +582,7 @@ Parameter Description
 | SIDECAR_FLUENT_DETAIL_LOG | check | Stream APIs, SQL, or filter logs to Elasticsearch |
 | LOGS_ELASTICSEARCH_HOSTNAME | efk-elasticsearch-data-hl.bmc-helix-logging | |
 | LOGS_ELASTICSEARCH_TLS | check | Select this check box. |
-| LOGS_ELASTICSEARCH_PASSWORD | kibana123| **KIBANA_PASSWORD** parameter in the **secrets.txt**|
+| LOGS_ELASTICSEARCH_PASSWORD | kibana$123| **KIBANA_PASSWORD** parameter in the **secrets.txt**|
 
 **SERVICE ACCOUNT** section:
 | Parameter | Value | Desc |
@@ -782,6 +782,7 @@ https://itsm-poc-chat.bmc.local
 ```
 
 admin 
+
 
 
 
