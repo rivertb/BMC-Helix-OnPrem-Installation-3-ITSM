@@ -132,8 +132,8 @@ sudo yum clean all
 sudo yum install perl -y
 
 #Set up Perl-Data-Dumper package
-sudo yum makecachesudo 
-yum -y install perl-Data-Dumper
+sudo yum makecache
+sudo yum -y install perl-Data-Dumper
 ```
 ### 4.2 Create and configure users
 Perform the following steps to add the users:
@@ -782,6 +782,7 @@ https://itsm-poc-chat.bmc.local
 ```
 
 admin 
+
 
 
 
