@@ -26,46 +26,48 @@ You obtain the BMC Helix Service Management installation files by downloading th
 In the BMC Helix Innovation Suite OnPrem page, on the Product tab, select BMC Helix Innovation Suite & Service Management Apps latest version, such as  BMC Helix Innovation Suite & Service Management Apps latest version, such as 25.4.01 , and click Download.
 ![Innovation Suite](./diagram/innovation-suite.png)
 
-The BMC_Helix_Innovation_Suite_And_Service_Management_Apps_Version_25.4.01.zip file contains the following files:
+The BMC_Helix_Innovation_Suite_And_Service_Management_Apps_Version_25.4.01.001.zip file contains the following files:
 
-* BMC_Remedy_Deployment_Engine_Setup_25.4.01.zip—This file contains BMC Deployment Engine set up files.
-* BMC_Remedy_Deployment_Manager_Configuration_Release_25.4.01.zip—This file contains the installation artifacts.
+* BMC_Remedy_Deployment_Engine_Setup_25.4.01.001.zip—This file contains BMC Deployment Engine set up files.
+* BMC_Remedy_Deployment_Manager_Configuration_Release_25.4.01.001.zip—This file contains the installation artifacts.
 * image_pull_push.sh and image_sync_to_private_registry.sh—These files contain the scripts to synchronize your Harbor repository with BMC Helix Innovation Suite and BMC Helix Platform services container images in BMC DTR.
 
 ## 2 Sync Helix ITSM images to local Harbor
 
-The latest list of images required for BMC Helix Service Management installation can be download from [here](https://docs.bmc.com/xwiki/bin/view/Service-Management/On-Premises-Deployment/BMC-Helix-Service-Management-Deployment/brid25201/Installing/Preparing-for-installation/Setting-up-a-Harbor-repository-to-synchronize-container-images/), including:
- * 25301_ITSM_Platform_Images.txt
- * 25301_ITSM_SmartApps_Images.txt
- * 25301_ITSM_Pipeline_Images.txt
- * 25301_SupportAssistTool_Images.txt
+The latest list of images required for BMC Helix Service Management installation can be download from [here](https://docs.bmc.com/xwiki/bin/view/Service-Management/On-Premises-Deployment/BMC-Helix-Service-Management-Deployment/brid25401/Installing/Preparing-for-installation/Setting-up-a-Harbor-repository-to-synchronize-container-images/), including:
+ * 25401001_ITSM_Platform_Images.txt
+ * 25401001_ITSM_SmartApps_Images.txt
+ * 25401001_ITSM_Pipeline_Images.txt
+ * 25401001_SupportAssistTool_Images.txt
+ * 254_Helix_Platform_Images.txt
  * 253_Helix_Platform_Images.txt
  * 210503HF12_SmartReporting_Images.txt
 
 You can also copy from ~/BMC-Helix-OnPrem-Installation-1-Env/helix-itsm-images-files-25.4.01.
 ```
-cp -R ~/BMC-Helix-OnPrem-Installation-1-Env/helix-itsm-images-files-25.4.01 /root/.
-cd /root/helix-itsm-images-files-25.4.01
+cp -R ~/BMC-Helix-OnPrem-Installation-1-Env/helix-itsm-images-files-25.4.01.001 /root/.
+cd /root/helix-itsm-images-files-25.4.01.001
 chmod a+x *.sh
 dnf install dos2unix -y
 dos2unix *.txt
 ls -l
 
--rw-r--r-- 1 root root  118 Nov 24 09:41 25401_SupportAssistTool_Images.txt
--rw-r--r-- 1 root root 1599 Nov 24 09:41 25401_ITSM_SmartApps_Images.txt
--rw-r--r-- 1 root root 3328 Nov 24 09:41 25401_ITSM_Platform_Images.txt
--rw-r--r-- 1 root root 2572 Nov 24 09:41 25401_ITSM_Pipeline_Images.txt
--rw-r--r-- 1 root root  255 Nov 24 09:41 210503HF12_SmartReporting_Images.txt
--rw-r--r-- 1 root root 4848 Nov 24 09:41 254_Helix_Platform_Images.txt
+-rw-r--r-- 1 git git  240 Feb  4 10:30 210503HF12_SmartReporting_Images.txt
+-rw-r--r-- 1 git git 2417 Feb  4 10:29 25401001_ITSM_Pipeline_Images.txt
+-rw-r--r-- 1 git git 1471 Feb  4 10:28 25401001_ITSM_Platform_Images.txt
+-rw-r--r-- 1 git git 1471 Feb  4 10:28 25401001_ITSM_SmartApps_Images.txt
+-rw-r--r-- 1 git git  111 Feb  4 10:29 25401001_SupportAssistTool_Images.txt
+-rw-r--r-- 1 git git 4557 Feb  4 10:29 254_Helix_Platform_Images.txt
 
 ```
 Synchronize the Helix ITSM images from https://containers.bmc.com to local Harbor server.
 ```
 cat 210503HF12_SmartReporting_Images.txt > images.txt
-cat 25401_ITSM_Pipeline_Images.txt >> images.txt
-cat 25401_ITSM_Platform_Images.txt >> images.txt
-cat 25401_ITSM_SmartApps_Images.txt >> images.txt
-cat 25401_SupportAssistTool_Images.txt >> images.txt
+cat 25401001_ITSM_Pipeline_Images.txt >> images.txt
+cat 25401001_ITSM_Platform_Images.txt >> images.txt
+cat 25401001_ITSM_SmartApps_Images.txt >> images.txt
+cat 25401001_SupportAssistTool_Images.txt >> images.txt
+cat 254_Helix_Platform_Images.txt >> images.txt
 
 nohup ./image_sync_to_private_registry.sh > nohup.out &
 tail -f nohup.out
@@ -374,7 +376,7 @@ Go to Dashboard->Manage Jenkins->In-process Script Approval.
 Click Approve button.
 ![In Process Script Approved](./diagram/in-process-script-approved.png)
 
-## 6 Create a self-signed or custom CA certificate
+## ~~6 Create a self-signed or custom CA certificate~~
 We can use a self-signed certificate as a security certificate for BMC Helix Innovation Suite and Service Management applications.
 Get the key store file cacerts 
 ```
@@ -543,13 +545,13 @@ Parameter Description
 | CLUSTER_DOMAIN | bmc.local |  |
 | INPUT_CONFIG_METHOD | **NOT select** |  |
 | INPUT_CONFIG_FILE | **NOT select** |  |
-| CUSTOM_CERTIFICATE | cacerts | Upload cacerts with public certificate create in section 6 |
+| CUSTOM_CERTIFICATE | bmc.local.crt | Upload /root/openssl/bmc.local.crt |
 | CACERTS_SSL_TRUSTSTORE_PASSWORD | **NOT change** | Leave this blank. Using default password changeit |
 | DB_SSL_CERT | **NOT select** | Postgres DB which has SSL enabled. Provide root.crt file |
 | CUSTOMER_SIZE | C | C stands for Compact |
 | SOURCE_VERSION | NA | Only Applicable in case of DEPLOYMENT_MODE as UPDATE or UPGRADE |
-| PLATFORM_HELM_VERSION | 2025401.1.00.00 | Target version of the Helm repositories |
-| SMARTAPPS_HELM_VERSION | 2025401.1.00.00 | Smart applications version of the Helm repositories. |
+| PLATFORM_HELM_VERSION | 2025401.1.01.00 | Target version of the Helm repositories |
+| SMARTAPPS_HELM_VERSION | 2025401.1.01.00 | Smart applications version of the Helm repositories. |
 
 **PRODUCTS** section:
 | Parameter | Value | Desc |
@@ -782,6 +784,7 @@ https://itsm-poc-chat.bmc.local
 ```
 
 admin 
+
 
 
 
