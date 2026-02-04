@@ -242,8 +242,8 @@ Copy the BMC_Helix_Innovation_Suite_And_Service_Management_Apps_Version_25.4.01.
 ```
 #Switch to the git user
 su - git
-unzip ./BMC_Helix_Innovation_Suite_And_Service_Management_Apps_Version_25.4.01.zip
-unzip ./BMC_Remedy_Deployment_Engine_Setup_25.4.01.zip
+unzip ./BMC_Helix_Innovation_Suite_And_Service_Management_Apps_Version_25.4.01.001.zip
+unzip ./BMC_Remedy_Deployment_Engine_Setup_25.4.01.001.zip
 cd DE1.0
 ```
 Update build.properties and customize the following parameters:
@@ -256,7 +256,7 @@ Update build.properties and customize the following parameters:
 * POSTGRES_VERSION
 * HELM_VERSION
 ```
-sed -i "/^ITSM_REPO_GIT_ZIP/c \ITSM_REPO_GIT_ZIP=/home/git/BMC_Remedy_Deployment_Manager_Configuration_Release_25.4.01.zip" /home/git/DE1.0/build.properties
+sed -i "/^ITSM_REPO_GIT_ZIP/c \ITSM_REPO_GIT_ZIP=/home/git/BMC_Remedy_Deployment_Manager_Configuration_Release_25.4.01.001.zip" /home/git/DE1.0/build.properties
 sed -i "/^JENKINS_CONFIG_FILES_ZIP_PATH/c \JENKINS_CONFIG_FILES_ZIP_PATH=/home/git/Jenkins_Config_Files.zip" /home/git/DE1.0/build.properties
 sed -i "/^LIBRARY_REPO_ZIP_PATH/c \LIBRARY_REPO_ZIP_PATH=/home/git/LIBRARY_REPO.zip" /home/git/DE1.0/build.properties
 sed -i "/^DB_TYPE/c \DB_TYPE=postgres" /home/git/DE1.0/build.properties
@@ -784,6 +784,7 @@ https://itsm-poc-chat.bmc.local
 ```
 
 admin 
+
 
 
 
