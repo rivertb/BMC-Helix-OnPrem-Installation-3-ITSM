@@ -1,5 +1,6 @@
 
 
+
 # BMC Helix ITOM & ITSM OnPrem Installation Step by Step 3 - ITSM
 
 - [BMC HelixOM ITOM & ITSM OnPrem Installation Step by Step 3 - ITSM](#bmc-helixom-itom-&-itsm-onprem-installation-step-by-step-3---itsm)
@@ -23,53 +24,60 @@ You obtain the BMC Helix Service Management installation files by downloading th
 * Git repositories and artifacts that are used for BMC Helix Service Management installation
 * Deployment manager that is used for BMC Helix Platform Common Services installation (Already download in [ITOM](https://github.com/rivertb/BMC-Helix-OnPrem-Installation-2-ITOM) project)
 
-In the BMC Helix Innovation Suite OnPrem page, on the Product tab, select BMC Helix Innovation Suite & Service Management Apps latest version, such as  BMC Helix Innovation Suite & Service Management Apps latest version, such as 25.4.01 , and click Download.
+In the BMC Helix Innovation Suite OnPrem page, on the Product tab, select BMC Helix Innovation Suite & Service Management Apps latest version, such as  BMC Helix Innovation Suite & Service Management Apps latest version, such as 26.1.01 , and click Download.
 ![Innovation Suite](./diagram/innovation-suite.png)
 
-The BMC_Helix_Innovation_Suite_And_Service_Management_Apps_Version_25.4.01.001.zip file contains the following files:
+The BMC_Helix_Innovation_Suite_And_Service_Management_Apps_Version_26.1.01.zip file contains the following files:
 
-* BMC_Remedy_Deployment_Engine_Setup_25.4.01.001.zip—This file contains BMC Deployment Engine set up files.
-* BMC_Remedy_Deployment_Manager_Configuration_Release_25.4.01.001.zip—This file contains the installation artifacts.
-* image_pull_push.sh and image_sync_to_private_registry.sh—These files contain the scripts to synchronize your Harbor repository with BMC Helix Innovation Suite and BMC Helix Platform services container images in BMC DTR.
+* helix-sm-deployment-engine-2026101.1.00.00.zip —This file contains BMC Deployment Engine set up files.
+* BMC_Remedy_Deployment_Manager_Configuration_Release_2026101.1.00.00.zip —This file contains the installation artifacts.
+* image_pull_push.sh and image_sync_to_private_registry.sh —These files contain the scripts to synchronize your Harbor repository with BMC Helix Innovation Suite and BMC Helix Platform services container images in BMC DTR.
 
 ## 2 Sync Helix ITSM images to local Harbor
 
-The latest list of images required for BMC Helix Service Management installation can be download from [here](https://docs.bmc.com/xwiki/bin/view/Service-Management/On-Premises-Deployment/BMC-Helix-Service-Management-Deployment/brid25401/Installing/Preparing-for-installation/Setting-up-a-Harbor-repository-to-synchronize-container-images/), including:
- * 25401001_ITSM_Platform_Images.txt
- * 25401001_ITSM_SmartApps_Images.txt
- * 25401001_ITSM_Pipeline_Images.txt
- * 25401001_SupportAssistTool_Images.txt
- * 254_Helix_Platform_Images.txt
- * 253_Helix_Platform_Images.txt
- * 210503HF12_SmartReporting_Images.txt
+The latest list of images required for BMC Helix Service Management installation can be download from [here](https://docs.bmc.com/xwiki/bin/view/Service-Management/On-Premises-Deployment/BMC-Helix-Service-Management-Deployment/brid26101/Installing/Preparing-for-installation/Setting-up-a-Harbor-repository-to-synchronize-container-images/), including:
+
+ * 26101_ITSM_Platform_Images.txt
+ * 26101_ITSM_SmartApps_Images.txt
+ * 26101_ITSM_Pipeline_Images.txt 
+ * 26101_SupportAssistTool_Images.txt
+ * 26101_ITSM_Deployment_Engine_Images.txt
+ * 261_Helix_Platform_Core_Images.txt 
+ * 261_Helix_Platform_Full_Images.txt
+ * 254_Helix_Platform_Images.txt​​​​​​ 
+ * 21304_Smart_Reporting_images.txt
 
 You can also copy from ~/BMC-Helix-OnPrem-Installation-1-Env/helix-itsm-images-files-25.4.01.
 ```
-cp -R ~/BMC-Helix-OnPrem-Installation-1-Env/helix-itsm-images-files-25.4.01.001 /root/.
-cd /root/helix-itsm-images-files-25.4.01.001
+cp -R ~/BMC-Helix-OnPrem-Installation-1-Env/helix-itsm-26.1.01 /root/.
+cd /root/helix-itsm-26.1.01
 chmod a+x *.sh
 dnf install dos2unix -y
 dos2unix *.txt
 ls -l
 
--rw-r--r-- 1 git git  240 Feb  4 10:30 210503HF12_SmartReporting_Images.txt
--rw-r--r-- 1 git git 2417 Feb  4 10:29 25401001_ITSM_Pipeline_Images.txt
--rw-r--r-- 1 git git 1471 Feb  4 10:28 25401001_ITSM_Platform_Images.txt
--rw-r--r-- 1 git git 1471 Feb  4 10:28 25401001_ITSM_SmartApps_Images.txt
--rw-r--r-- 1 git git  111 Feb  4 10:29 25401001_SupportAssistTool_Images.txt
--rw-r--r-- 1 git git 4557 Feb  4 10:29 254_Helix_Platform_Images.txt
-
+-rw-r--r-- 1 root root  206 Mar  9 09:44 21304_Smart_Reporting_images.txt
+-rw-r--r-- 1 root root  311 Mar  9 09:44 26101_ITSM_Deployment_Engine_Images.txt
+-rw-r--r-- 1 root root 4640 Mar  9 09:44 26101_ITSM_Pipeline_Images.txt
+-rw-r--r-- 1 root root 3131 Mar  9 09:44 26101_ITSM_Platform_Images.txt
+-rw-r--r-- 1 root root 1665 Mar  9 09:44 26101_ITSM_SmartApps_Images.txt
+-rw-r--r-- 1 root root  119 Mar  9 09:44 26101_SupportAssistTool_Images.txt
+-rw-r--r-- 1 root root 1003 Mar  9 09:44 261_Helix_Platform_Core_Images.txt
+-rw-r--r-- 1 root root 4865 Mar  9 09:44 261_Helix_Platform_Full_Images.txt
+-rwxr-xr-x 1 root root  536 Mar 13 16:33 download_all.sh
+-rwxr-xr-x 1 root root 1090 Mar  9 09:43 helix_file_to_tar_gz.sh
+-rwxr-xr-x 1 root root 1609 Mar  9 09:43 helix_load_and_push.sh
+-rwxr-xr-x 1 root root  826 Mar 13 16:35 push_all.sh
 ```
-Synchronize the Helix ITSM images from https://containers.bmc.com to local Harbor server.
+Synchronize the Helix ITSM images from https://docker.io to local Harbor server.
 ```
-cat 210503HF12_SmartReporting_Images.txt > images.txt
-cat 25401001_ITSM_Pipeline_Images.txt >> images.txt
-cat 25401001_ITSM_Platform_Images.txt >> images.txt
-cat 25401001_ITSM_SmartApps_Images.txt >> images.txt
-cat 25401001_SupportAssistTool_Images.txt >> images.txt
-cat 254_Helix_Platform_Images.txt >> images.txt
+nohup ./download_all.sh > nohup.out &
+tail -f nohup.out
 
-nohup ./image_sync_to_private_registry.sh > nohup.out &
+# Due to the limitation of network speed, the entire download process may take several hours to several days.
+
+# Upload images to Harbor
+nohup ./pull_all.sh > nohup.out &
 tail -f nohup.out
 ```
 The image synchronization process may take several hours to one day.
@@ -224,203 +232,49 @@ sudo cp /root/.kube/config /home/git/.kube/.
 #Verify kubectl tool works
 kubectl get nodes
 ```
-### ~~~4.6 Create Kubernetes image registry secret~~
-
+### 4.6 Config deployment-engine-config.env
 ```
-kubectl create secret docker-registry isharbor-secret \
-	--docker-server=helix-harbor.bmc.local \
-	--docker-username=admin \
-	--docker-password=bmcAdm1n \
-	-n helixis
+su - git
+cd helix-sm-deployment-engine
+vi deployment-engine-config.env
 ```
+| Parameter | Value | Desc |
+| --- | --- | --- |
+| NAMESPACE | helixde| BMC Helix Deployment Engine namespace |
+| STORAGE_CLASS_NAME | nfs-storage | Storage class name |
+| IMAGE_REGISTRY | helix-harbor.bmc.local  | Local registry name |
+| REGISTRY_ORG | bmchelix | Local registry org  |
+| IMAGE_REGISTRY_USER | admin  | User name to log in to your local container registry.  |
+| IMAGE_REGISTRY_PASSWORD | bmcAdm1n | Password to log in to your local container registry.  |
+| IMAGE_PULL_SECRET | registry-secret  | Kubernetes image registry secret name  |
+| JENKINS_PASS | bmcAdm1n  | Jenkins administrator password |
+| GITEA_ADMIN_PASS | bmcAdm1n | Gitea password. |
+| KUBECONFIG_FILE | /home/git/.kube/config | Full path to the **.kube/config** file. |
+| SMART_REPORTING | false  | Install Smart Reporting? |
+| OPENSHIFT_ENABLED | false  | OpenShift clusters? |
+| CREATE_SERVICE_ACCOUNTS | true | ServiceAccount creation? |
+| INGRESS_CLASS | nginx | Ingress class name of the NGINX Ingress Controller. |
+| JENKINS_INGRESS_ENABLED | true  | Using Jenkins Ingress controller? |
+| JENKINS_HOSTNAME | helix-svc.bmc.local | Jenkins host name. |
+| GITEA_INGRESS_ENABLED | true | Using Gitea Ingress controller？ |
+| GITEA_HOSTNAME | helix-k8s-worker04.bmc.local | Gitea host name. |
+| JENKINS_USER | admin | Jenkins admin user. |
+| GITEA_ADMIN_USER | ciadmin | Gitea admin user. |
+| JENKINS_URL | http://jenkins-master:8080 | Jenkins In-cluster URLs. |
+| GITEA_URL | http://gitea:3000 | Gitea In-cluster URLs. |
+| JENKINS_PROTOCOL | https | Jenkins protocol. |
+| GITEA_PROTOCOL | https | Gitea protocol. |
 
 ### 4.7 Run the BMC Deployment Engine automation script
 
-
-Copy the BMC_Helix_Innovation_Suite_And_Service_Management_Apps_Version_25.4.01.zip file downloaded from EPD and extract the files to the git user home directory
+To run the deployment script, run the following command:
 
 ```
-#Switch to the git user
-su - git
-unzip ./BMC_Helix_Innovation_Suite_And_Service_Management_Apps_Version_25.4.01.001.zip
-unzip ./BMC_Remedy_Deployment_Engine_Setup_25.4.01.001.zip
-cd DE1.0
-```
-Update build.properties and customize the following parameters:
-* ITSM_REPO_GIT_ZIP
-* JENKINS_CONFIG_FILES_ZIP_PATH
-* LIBRARY_REPO_ZIP_PATH
-* DB_TYPE
-* JENKINS_HOSTNAME
-* KUBERNETES_VERSION
-* POSTGRES_VERSION
-* HELM_VERSION
-```
-sed -i "/^ITSM_REPO_GIT_ZIP/c \ITSM_REPO_GIT_ZIP=/home/git/BMC_Remedy_Deployment_Manager_Configuration_Release_25.4.01.001.zip" /home/git/DE1.0/build.properties
-sed -i "/^JENKINS_CONFIG_FILES_ZIP_PATH/c \JENKINS_CONFIG_FILES_ZIP_PATH=/home/git/Jenkins_Config_Files.zip" /home/git/DE1.0/build.properties
-sed -i "/^LIBRARY_REPO_ZIP_PATH/c \LIBRARY_REPO_ZIP_PATH=/home/git/LIBRARY_REPO.zip" /home/git/DE1.0/build.properties
-sed -i "/^DB_TYPE/c \DB_TYPE=postgres" /home/git/DE1.0/build.properties
-sed -i "/^JENKINS_HOSTNAME/c \JENKINS_HOSTNAME=helix-svc.bmc.local" /home/git/DE1.0/build.properties
-sed -i "/^KUBERNETES_VERSION/c \KUBERNETES_VERSION=1.32.4" /home/git/DE1.0/build.properties
-sed -i "/^POSTGRES_VERSION/c \POSTGRES_VERSION=17" /home/git/DE1.0/build.properties
-sed -i "/^HELM_VERSION/c \HELM_VERSION=3.17.1" /home/git/DE1.0/build.properties
+./deployment-engine.sh
 ```
 
-After updating the build.properties file, run the BMC Deployment Engine automation script to set up the Jenkins job pipeline framework.
-```
-perl setup-Helix-ITSM-onPrem.pl  2>&1 | tee ~/BMC-HELIX-DE-AUTO.log.$$
-```
-The Jenkins job pipeline framework installed.
-![Jenkins Installed](./diagram/jenkins-installed.png)
-
-Add firewall rule for jenkins
-```
-firewall-cmd --add-port=8080/tcp --zone=internal --permanent 
-firewall-cmd --add-port=8080/tcp --zone=external --permanent 
-firewall-cmd --reload
-```
-
-### 4.8 Post-installation configuration
-
-Login to Jenkins console. The password for admin can be find in the ~/BMC-HELIX-DE-AUTO.log.$$ file.
-![Login Jenkins](./diagram/login-jenkins.png)
-
-On the Jenkins User Interface, select Install Suggested Plugins
-![Install Sugguested Plugins](./diagram/install-suggested-plugins.png)
-
-Get started to install plugins.
-![Jenkins Plugins Started](./diagram/jenkins-plugins-getting-started.png)
-
-Create the first admin user.
-![Create First Admin User](./diagram/create-first-admin-user.png)
-
-Save Jenkins URL.
-![Jenkins URL](./diagram/jenkins-url.png)
-
-The default Jenkins dashboard.
-![Helix Dashboard](./diagram/helix-dashboard.png)
-
-Download kubeconfig file from Rancher console.
-![Download Kubeconfig](./diagram/download-kubeconfig.png)
-
-Login to http://192.168.1.1:8080/credentials.
-![Jenkins Credentials](./diagram/jenkins-credentials.png)
-
-Select kubeconfig.yaml (kubeconfig), Update->Replace->Choose kubeconfig file just download from Rancher console.
-![Jenkins Update Kubeconfig](./diagram/jenkins-update-kubeconfig.png)
-
-Input password for the below credentials:
-* git/****** (github): Update->Change Password->bmcAdm1n
-* git/****** (ansible_host): Update->Change Password->bmcAdm1n
-* git/****** (ansible): Update->Change Password->bmcAdm1n
-* git/****** (Credentials of git): Update->Change Password->bmcAdm1n
-
-Check Node Status. 
-Goto http://192.168.1.1:8080/computer, Refresh Status, the nodes will start automatically. Or click Configure, select git user as Credentials and Launch Agent.
-![Jenkins Computer Nodes](./diagram/jenkins-launch-agent.png)
-
-![Jenkins Computer Nodes](./diagram/jenkins-computer-nodes.png)
-
-Add Jenkins libraries.
-Jenkins home page->Manage Jenkins->System->Scrolldown to "Global Trusted Pipeline Libraries"->Add
-![Jenkins Global Truested Pipeline Libraries](./diagram/jenkins-manage-system-global-truested-pipeline-libraries.png)
-
-* Name: pipeline-framework
-* Default version: master
-* Load implicitly: Checked
-* Project Repository: ssh://git@helix-svc.bmc.local/home/git/git_repo/LIBRARY_REPO/pipeline-framework/pipeline-framework.git
-* Credentials: Git/****** (Credentials of git)
-
-![Jenkins Pipeline Framework](./diagram/jenkins-pipeline-framework.png)
-
-Click Add button to add another Library, save the change.
-
-* Name: JENKINS-27413-workaround-library
-* Default version: master
-* Load implicitly: Checked
-* Project Repository: ssh://git@helix-svc.bmc.local/home/git/git_repo/LIBRARY_REPO/jenkins-workaround/JENKINS-27413-workaround-library.git
-* Credentials: Git/****** (Credentials of git)
-
-![Jenkins 27413 Workaround Library](./diagram/jenkins-27413-workaround-library.png)
-
-## 5 Dry run Pipeline
-Dry-run deployment pipelines. This is a mandatory step to update the pipeline configuration for any changes to the BMC Helix Service Management installer.
-
-* Navigate to Jenkins Dashboards to view all the pipelines required for deployment.
-* Select each pipeline and click Build with Parameters.
-* In the AGENT parameter(Only in HELIX_ONPREM_DEPLOYMENT), provide the value of the node that has the name git-helix-svc.bmc.local
-* Click Build.The build job will fail, which is expected.
-
-Below two pipelines do NOT require a dry-run
-* agent-add-pipeline
-* HELIX_DR
-
-Select HELIX_CONPREM_DEPLOYMENT.
-![Select HELIX_CONFIG_DEPLOYMENT](./diagram/helix-onprem-deployment-select.png)
-
-Click Build with Parameters.
-![HELIX_CONFIG_DEPLOYMENT Build With Parameters](./diagram/helix-onprem-deployment-build-with-parameters.png)
-
-Input agent.
-![HELIX_CONFIG_DEPLOYMENT Agent Setting](./diagram/helix-onprem-deployment-agent-setting.png)
-
-Check out all under PRODUCT_DEPLOY section.
-![HELIX_CONFIG_DEPLOYMENT Product Deploy](./diagram/helix-onprem-deployment-product-deploy.png)
-
-Build job failed as expected.
-![HELIX_CONFIG_DEPLOYMENT Buildes With Failure](./diagram/helix-onprem-deployment-builds-with-failure.png)
-
-Go to Dashboard->Manage Jenkins->In-process Script Approval.
-![In Process Script Approval](./diagram/in-process-script-approval.png)
-
-Click Approve button.
-![In Process Script Approved](./diagram/in-process-script-approved.png)
-
-## ~~6 Create a self-signed or custom CA certificate~~
-We can use a self-signed certificate as a security certificate for BMC Helix Innovation Suite and Service Management applications.
-Get the key store file cacerts 
-```
-cp /root/BMC-Helix-OnPrem-Installation-1-Env/certs/cacerts /root/openssl/.
-```
-Import public key file to key store
-```
-cd /root/openssl
-keytool -importcert -v -alias helix -file /root/openssl/bmc.local.crt -keystore /root/openssl/cacerts
-```
-
-Enter the password as changeit and yes to trust this certificate.
-```
-keytool -importcert -v -alias helix -file /root/openssl/bmc.local.crt -keystore /root/openssl/cacerts
-Enter keystore password:
-Owner: C=CN, O=BMCSoftware, CN=*.bmc.local
-Issuer: C=CN, O=BMCSoftware, CN=BMC-CA
-Serial number: 4b1d7bace2a9b937ae653b7f392e46ebe7ce522
-Valid from: Thu Feb 27 13:24:53 CST 2025 until: Sun Feb 25 13:24:53 CST 2035
-Certificate fingerprints:
-         SHA1: 85:DF:A7:E6:BE:57:2F:66:5E:B4:DE:D4:7A:F0:3A:D0:33:B8:2A:66
-         SHA256: 0F:C6:40:F0:AA:DB:2B:23:C4:85:7A:E8:B4:75:9B:82:1C:DC:32:BB:30:22:86:0B:98:FB:82:75:2B:00:FC:A1
-Signature algorithm name: SHA256withRSA
-Subject Public Key Algorithm: 2048-bit RSA key
-Version: 3
-
-Extensions:
-
-#1: ObjectId: 2.5.29.17 Criticality=false
-SubjectAlternativeName [
-  DNSName: *.bmc.local
-  DNSName: helix-harbor.bmc.local
-  DNSName: helix-discovery.bmc.local
-  DNSName: helix-bhii.bmc.local
-]
-
-Trust this certificate? [no]:  yes
-Certificate was added to keystore
-[Storing /root/openssl/cacerts]
-```
-We get the new cacerts with public key stored. It will be upload to Jenkins pipeline.
-
-## 7 Setup Installation environment
-### 7.1 Verifying DNS for applications
+## 5 Setup Installation environment
+### 5.1 Verifying DNS for applications
 We have configured DNS for the BMC Helix Service Management applications so that we can access the applications by using the following URL format. 
 * Mid Tier: \<CUSTOMER_SERVICE\>-\<ENVIRONMENT\>.<CLUSTER_DOMAIN>
 * Mid Tier integration: \<CUSTOMER_SERVICE\>-\<ENVIRONMENT\>-int.<CLUSTER_DOMAIN>
@@ -450,7 +304,7 @@ ping -c 4 itsm-poc-chat.bmc.local
 ping -c 4 itsm-poc-supportassisttool.bmc.local
 ```
 
-### 7.2 Configure Helix Single Sign-On
+### 5.2 Configure Helix Single Sign-On
 
 Log in to BMC Helix Single Sign-On
 
@@ -492,21 +346,20 @@ Click Authentication on the left tab, and enter the following details:
 
 ![RSSO Authentication](./diagram/rsso-authentication.png)
 
-## 8 Install Helix Platform Common services
+## 6 Install Helix Platform Common services
 
-Change value setting in /root/helix-on-prem-deployment-manager-25.4/configs/deployment.config
+Change value setting in /root/helix-on-prem-deployment-manager-26.1.00-63/configs/deployment.config
 
 | Line No. | Parameter | Value |
 | --- | --- | --- |
-| 57 | LOG_ANALYTICS_SERVICES | yes |
-| 66 | ARSERVICES | yes |
+| 79 | SM_PLATFORM_FULL | yes |
 
 Execute Deployment Manager script
 ```
-/root/helix-on-prem-deployment-manager-25.4/deployment-manager.sh
+/root/helix-on-prem-deployment-manager-26.1.00-63/deployment-manager.sh
 ```
 
-## 9 Config HELIX_ONPREM_DEPLOYMENT pipeline
+## 7 Config HELIX_ONPREM_DEPLOYMENT pipeline
 On Jenkins Dashboard, click the HELIX_ONPREM_DEPLOYMENT pipeline.
 ![RSSO Authentication](./diagram/helix-onprem-deployment-select.png)
 
@@ -519,13 +372,14 @@ Parameter Description
 **DEPLOYMENT ENGINE DETAILS** section:
 | Parameter | Value | Desc |
 | --- | --- | --- |
-| CUSTOM_BINARY_PATH | **NOT check** | Custom Binary Path to pick binaries |
-| AGENT | git-helix-svc.bmc.local | git-<Jenkins server host name>. |
-| CHECKOUT_USING_USER | github | Jenkins credential ID that contains the Git credentials. |
-| KUBECONFIG_CREDENTIAL | kubeconfig | Provide KubeConfig Id from Credentials. |
-| GIT_USER_HOME_DIR | /home/git | Git user home directory |
-| GIT_REPO_DIR | ssh://helix-svc.bmc.local/home/git/git_repo | Directory that contains all the Git repositories |
-| HELM_NODE | helix-svc.bmc.local  | Host name of the Jenkins server installed HELM. |
+| CONTAINERIZED_DE | check | Containerized Deployment Engine |
+| CUSTOM_BINARY_PATH | **Not Check** | git-<Jenkins server host name>. |
+| AGENT| jenkins-agent | Node name. |
+| CHECKOUT_USING_USER | github | GIT REPO Id from Credentials. |
+| KUBECONFIG_CREDENTIAL | kubeconfig | Kubeconfig Credential |
+| GIT_USER_HOME_DIR | /home/jenkins | Jenkins user home dir |
+| GIT_REPO_DIR | http://gitea:3000/ciadmin | Git repo base directory path. |
+| HELM_NODE | jenkins-agent | Helm Node. |
 
 **ENVIRONMENT DETAILS** section:
 | Parameter | Value | Desc |
@@ -709,7 +563,7 @@ Parameter Description
 
 After filling in the form, click Build to start executing the pipeline.
 
-## 10 Install Helix Service Management
+## 8 Install Helix Service Management
 The pipeline usually does not succeed in one go. If an error occurs, we need to learn how to troubleshoot.
 
 Hover the mouse over the stage where the error is reported and click the Logs window that pops up.
@@ -784,25 +638,6 @@ https://itsm-poc-chat.bmc.local
 ```
 
 admin 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
