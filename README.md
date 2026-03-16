@@ -1,6 +1,7 @@
 
 
 
+
 # BMC Helix ITOM & ITSM OnPrem Installation Step by Step 3 - ITSM
 
 - [BMC HelixOM ITOM & ITSM OnPrem Installation Step by Step 3 - ITSM](#bmc-helixom-itom-&-itsm-onprem-installation-step-by-step-3---itsm)
@@ -8,12 +9,10 @@
   - [2 Sync Helix ITSM images to local Harbor](#2-sync-helix-itsm-images-to-local-harbor)
   - [3 Setup PostgreSQL database](#3-setup-postgresql-database)
   - [4 Setup Helix Deployment Engine](#4-setup-helix-deployment-engine)
-  - [5 Dry run Pipeline](#5-dry-run-pipeline)
-  - [6 Create a self-signed or custom CA certificate](#6-create-a-self-signed-or-custom-ca-certificate)
-  - [7 Setup Installation environment](#7-setup-installation-environment)
-  - [8 Install Helix Platform Common services](#8-install-helix-platform-common-services)
-  - [9 Config HELIX_ONPREM_DEPLOYMENT pipeline](#9-config-helix_onprem_deployment-pipeline)
-  - [10 Install Helix Service Management](#10-install-helix-service-management)
+  - [5 Setup Installation environment](#5-setup-installation-environment)
+  - [6 Install Helix Platform Common services](#6-install-helix-platform-common-services)
+  - [7 Config HELIX_ONPREM_DEPLOYMENT pipeline](#7-config-helix_onprem_deployment-pipeline)
+  - [8 Install Helix Service Management](#8-install-helix-service-management)
 
 
 **Attention**! The installation of Helix Innovation Suite(ITSM) depends on Helix Platform Common services. Please refer to [BMC-Helix-OnPrem-Installation-2-ITOM](https://github.com/rivertb/BMC-Helix-OnPrem-Installation-2-ITOM?tab=readme-ov-file) and complete at least the section of "2 Deploy Helix Dashboard".
