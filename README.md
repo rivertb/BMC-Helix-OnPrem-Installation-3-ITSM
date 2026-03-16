@@ -395,16 +395,16 @@ Parameter Description
 | CUSTOMER_SERVICE  | itsm |  |
 | ENVIRONMENT | poc |  |
 | INGRESS_CLASS | nginx |  |
-| CLUSTER_DOMAIN | bmc.local |  |
-| INPUT_CONFIG_METHOD | **NOT select** |  |
-| INPUT_CONFIG_FILE | **NOT select** |  |
+| APPLICATION_PARENT_DOMAIN | bmc.local |  |
+| ENABLE_RSSO_MULTI_DOMAIN | **NOT select** |  |
+| INPUT_CONFIG_METHOD| **NOT select** |  |
 | CUSTOM_CERTIFICATE | bmc.local.crt | Upload /root/openssl/bmc.local.crt |
 | CACERTS_SSL_TRUSTSTORE_PASSWORD | **NOT change** | Leave this blank. Using default password changeit |
 | DB_SSL_CERT | **NOT select** | Postgres DB which has SSL enabled. Provide root.crt file |
-| CUSTOMER_SIZE | C | C stands for Compact |
+| ENVIRONMENT_SIZE | C | C stands for Compact |
 | SOURCE_VERSION | NA | Only Applicable in case of DEPLOYMENT_MODE as UPDATE or UPGRADE |
-| PLATFORM_HELM_VERSION | 2025401.1.01.00 | Target version of the Helm repositories |
-| SMARTAPPS_HELM_VERSION | 2025401.1.01.00 | Smart applications version of the Helm repositories. |
+| PLATFORM_HELM_VERSION | 2026101.1.00.00 | Target version of the Helm repositories |
+| SMARTAPPS_HELM_VERSION | 2026101.1.00.00 | Smart applications version of the Helm repositories. |
 
 **PRODUCTS** section:
 | Parameter | Value | Desc |
@@ -419,15 +419,17 @@ Parameter Description
 | HELIX_ITSM_INSIGHTS| **NOT check** | Helix ITSM Insights, resoure consume high |
 | HELIX_TSOMPLUGIN| **NOT check** | TrueSight Operations Management plug-ins |
 | HELIX_SMARTAPPS_CSM | check | Helix Customer Service Management (CSM) |
-| HELIX_SMARTAPPS_FAS | check | Helix Portfolio Management |
+| HELIX_SMARTAPPS_HPM | check | Helix Portfolio Management |
 | HELIX_DRIFT_MANAGEMENTPLUGIN | check | Drift Management |
-| HELIX_CLAMAV | **NOT check** | |
-| HELIX_NETOPS | **NOT check** | |
+| HELIX_CLAMAV | check | |
+| HELIX_NETOPS | check | |
 | HELIX_GPT | check | BMC Helix GPT |
 | HELIX_DSO | check | Distributed Server Option (DSO) service in BMC Helix Innovation Suite |
 | BWF_DEPLOY_SAMPLE_CONTENT_PACK | **NOT check** | Only in the development environments. | 
 | DWP_DEPLOY_SAMPLE_CONTENT_PACK | **NOT check** | Only in the development environments. | 
 | CLOUDACTIONS_DEPLOY_SAMPLE_CONTENT_PACK | **NOT check** | Only in the development environments. | 
+| HELIX_SCCM | check | Microsoft System Center Configuration Manager. | 
+| HELIX_BCM| check | BMC Client Management. | 
 
 **LOGGING CONFIGURATION** section:
 | Parameter | Value | Desc |
@@ -435,17 +437,17 @@ Parameter Description
 | SIDECAR_SUPPORT_ASSISTANT_FPACK | check | Support Assistant tool |
 | SIDECAR_FLUENTBIT | check | Support Assistant tool |
 | SIDECAR_FLUENT_DETAIL_LOG | check | Stream APIs, SQL, or filter logs to Elasticsearch |
-| LOGS_ELASTICSEARCH_HOSTNAME | efk-elasticsearch-data-hl.bmc-helix-logging | |
+| LOGS_ELASTICSEARCH_HOSTNAME | efk-elasticsearch-data-hl.bmc-helix-logging | efk-elasticsearch-data-hl.\<BMC Helix Logging namespace> |
 | LOGS_ELASTICSEARCH_TLS | check | Select this check box. |
 | LOGS_ELASTICSEARCH_PASSWORD | kibana$123| **KIBANA_PASSWORD** parameter in the **secrets.txt**|
 
 **SERVICE ACCOUNT** section:
 | Parameter | Value | Desc |
 | --- | --- | --- |
-| SUPPORT_ASSISTANT_CREATE_ROLE | check | Support Assistant tool creates a role and role binding |
-| SUPPORT_ASSISTANT_SERVICE_ACCOUNT | default | Default service account for Support Assistant tool installation |
-| COMMON_IS_SERVICE_ACCOUNT | sa-is-common | Specify the value as sa-is-common |
-| ENABLE_PLATFORM_RBAC | check | To create a service account, role, and role binding for key encryption key (KEK) automatically through pipeline. |
+| SUPPORT_ASSISTANT_CREATE_ROLE | check | Support Assistant Role. |
+| SUPPORT_ASSISTANT_SERVICE_ACCOUNT | default | ervice account is used during the Support Assistant tool installation. |
+| COMMON_IS_SERVICE_ACCOUNT| sa-is-common | common service account for all Service Management application pods. |
+| ENABLE_PLATFORM_KEK_RBAC| check | create a service account, role, and role binding associated with the StatefulSet. |
 
 **PIPELINES** section:
 | Parameter | Value | Desc |
@@ -491,6 +493,7 @@ Parameter Description
 | AR_DB_PASSWORD | AR#Admin# | Password for BMC Helix Innovation Suite user |
 | PLATFORM_SR_DB_USER | **BLANK** | Leave this field blank. |
 | PLATFORM_SR_DB_PASSWORD | **BLANK** | Leave this field blank. |
+| PLATFORM_SR_DB_JDBC_URL | **BLANK** | Leave this field blank. |
 
 **PRODUCT CONFIGURATIONS** section:
 | Parameter | Value | Desc |
@@ -518,7 +521,7 @@ Parameter Description
 | VC_PROXY_USER_PASSWORD | AR#Admin# | |
 | DWP_CONFIG_PRIMARY_ORG_NAME | dwporg | Organization name for BMC Helix Digital Workplace |
 | AR_SERVER_ALIAS | onbmc-s | Alias name of AR System server |
-| PLATFORM_ADMIN_PLATFORM_EXTERNAL_IPS | [192.168.1.201,192.168.1.202,192.168.1.203,192.168.1.204] | External IP address to enable external access.The external IP must be in JSON list format within square brackets. |
+| PLATFORM_ADMIN_PLATFORM_EXTERNAL_IPS | [192.168.1.201,192.168.1.202,192.168.1.203] | External IP address to enable external access.The external IP must be in JSON list format within square brackets. |
 | ENABLE_PLATFORM_INT_NORMALIZATION | **NOT check** | Do not select this check box. |
 | MIDTIERCACHEBUILDER_TRIGGER_PRELOAD | check | Enable full data cache mode |
 | MIDTIERCACHEBUILDER_SCHEDULE | 0 1 * * * | Specify a cron job schedule for the Mid Tier cache builder job. |
@@ -555,10 +558,10 @@ Parameter Description
 | Parameter | Value | Desc |
 | --- | --- | --- |
 | SIDECAR_FLUENTBIT_OUTPUT_TYPE| **NOT check**| Select this check box. |
-| SIDECAR_FLUENT_SPLUNK_HOSTNAME | | Specify the Splunk host name. |
-| SIDECAR_FLUENT_SPLUNK_PORT| | Specify the Splunk port. |
-| SIDECAR_FLUENT_OUTPUT_CUSTOM | check | Specify the FluentBit output. |
-| SIDECAR_FLUENT_SPLUNK_TOKEN | check | Specify the Splunk token. |
+| SIDECAR_FLUENT_SPLUNK_HOSTNAME | **NOT check** | Specify the Splunk host name. |
+| SIDECAR_FLUENT_SPLUNK_PORT| **NOT check** | Specify the Splunk port. |
+| SIDECAR_FLUENT_OUTPUT_CUSTOM | **NOT check** | Specify the FluentBit output. |
+| SIDECAR_FLUENT_SPLUNK_TOKEN | **NOT check** | Specify the Splunk token. |
 
 After filling in the form, click Build to start executing the pipeline.
 
