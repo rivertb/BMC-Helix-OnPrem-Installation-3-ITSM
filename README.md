@@ -128,110 +128,8 @@ psql -U postgres -c "show max_connections;"
 EOF
 ```
 ## 4 Setup Helix Deployment Engine
-### 4.1 Update libraries and packages
 
-Update your system libraries and packages to the latest available version
-```
-#Update OS
-sudo yum update -y
-sudo yum upgrade -y
-sudo yum clean all
-
-#Install perl
-sudo yum install perl -y
-
-#Set up Perl-Data-Dumper package
-sudo yum makecache
-sudo yum -y install perl-Data-Dumper
-```
-### 4.2 Create and configure users
-Perform the following steps to add the users:
-```
-sudo useradd git -m
-echo "git:bmcAdm1n" | chpasswd
-
-sudo useradd jenkins -m
-echo "jenkins:bmcAdm1n" | chpasswd
-```
-
-
-### 4.3 Configure passwordless sudo access for git
-Create a sudoers override file:
-```
-cat > /etc/sudoers.d/git_sudoers <<-EOF
-git ALL=(ALL) NOPASSWD: \
-    /usr/sbin/alternatives, \
-    /usr/bin/cat, \
-    /usr/bin/chmod, \
-    /usr/bin/chown, \
-    /usr/bin/cp, \
-    /usr/bin/curl, \
-    /usr/bin/dnf, \
-    /usr/bin/dos2unix, \
-    /usr/bin/grep, \
-    /usr/bin/java, \
-    /usr/bin/ln, \
-    /usr/bin/ls, \
-    /usr/bin/mkdir, \
-    /usr/bin/mv, \
-    /usr/bin/netstat, \
-    /usr/bin/rpm, \
-    /usr/bin/sed, \
-    /usr/bin/su, \
-    /usr/bin/sha256sum, \
-    /usr/sbin/subscription-manager, \
-    /usr/bin/systemctl, \
-    /usr/bin/unzip, \
-    /usr/bin/crb, \
-    /usr/sbin/update-alternatives, \
-    /usr/bin/wget, \
-    /usr/bin/yum
-EOF
-#Verify that the file has no errors
-visudo -c -f /etc/sudoers.d/git_sudoers
-
-#Modify access to sudoers file
-chmod 440 /etc/sudoers.d/git_sudoers
-
-#Switch the user to git user, and validate passwordless sudo access
-su - git
-sudo ls /root
-```
-
-### 4.4 Copy the ssh keys
-```
-su - git
-
-#Generate the SSH key
-ssh-keygen
-#Tribouble enter to select default value
-
-ssh-copy-id git@helix-svc.bmc.local
-#enter yes and bmcAdm1n as password
-
-ssh git@helix-svc.bmc.local
-
-su - jenkins
-ssh-keygen
-#Tribouble enter to select default value
-
-ssh-copy-id git@helix-svc.bmc.local
-ssh git@helix-svc.bmc.local
-#enter yes and bmcAdm1n as password
-
-```
-
-### 4.5 Add the kubeconfig file
-
-```
-su - git
-mkdir /home/git/.kube
-sudo cp /root/.kube/config /home/git/.kube/.
-
-#Verify kubectl tool works
-kubectl get nodes
-```
-### 4.6 Config deployment-engine-config.env
+### 4.1 Config deployment-engine-config.env
 ```
 su - git
 cd helix-sm-deployment-engine
@@ -248,7 +146,7 @@ vi deployment-engine-config.env
 | IMAGE_PULL_SECRET | registry-secret  | Kubernetes image registry secret name  |
 | JENKINS_PASS | bmcAdm1n  | Jenkins administrator password |
 | GITEA_ADMIN_PASS | bmcAdm1n | Gitea password. |
-| KUBECONFIG_FILE | /home/git/.kube/config | Full path to the **.kube/config** file. |
+| KUBECONFIG_FILE | /root/.kube/config | Full path to the **.kube/config** file. |
 | SMART_REPORTING | false  | Install Smart Reporting? |
 | OPENSHIFT_ENABLED | false  | OpenShift clusters? |
 | CREATE_SERVICE_ACCOUNTS | true | ServiceAccount creation? |
@@ -264,13 +162,20 @@ vi deployment-engine-config.env
 | JENKINS_PROTOCOL | https | Jenkins protocol. |
 | GITEA_PROTOCOL | https | Gitea protocol. |
 
-### 4.7 Run the BMC Deployment Engine automation script
+### 4.2 Install Deployment Engine in k8s cluster
 
 To run the deployment script, run the following command:
 
 ```
+su - root
 ./deployment-engine.sh
 ```
+
+### 4.3 Login Jenkins Console
+
+JENKINS_HOSTNAME in deployment-engine-config.env
+
+https://helix-svc.bmc.local
 
 ## 5 Setup Installation environment
 ### 5.1 Verifying DNS for applications
